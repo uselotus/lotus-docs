@@ -2,46 +2,32 @@
 sidebar_position: 1
 ---
 
-# Lotus Intro
+# Why Lotus
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Lotus is a powerful open-core pricing and billing engine, designed for API and SaaS companies to automate their custom usage-based pricing. Lotus will take care of your billing pipeline, and you can focus your engineering resources on what makes you special.
 
-## Getting Started
+## How It Works
 
-Get started by **creating a new site**.
+Lotus manages your billing process from metering to pricing to invocing. This software solves some of the biggest issues when building a system to handle usage-based billing, including:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+- Real-time visibility of accrued revenue and usage during a billable period
+- Easily creating complex modular pricing plans
+- Price optimization to help with price experimentation
 
-### What you'll need
+### Meter Usage
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+Define metrics that represent value in your product. A company like Mailchimp might define metrics like _email-sent_ and _new-contact_, where as a company like Vercel would define metrics like _data-egress_ and _compute_.
 
-## Generate a new site
+Once metrics are defined, Lotus integrates into you backend with a simple library that tracks events and customers, much like product analytics like Segment and Posthog. Events then stream into Lotus where they are processed and aggregate based on the defined metrics.
 
-Generate a new Docusaurus site using the **classic template**.
+### Create Pricing Plans
 
-The classic template will automatically be added to your project after you run the command:
+Creating plans is as simple or complex as you desire. Lotus supports the combination of subscription and usage-based models. Each plan is composed of components that are either flat-rate subscriptions or pricing schemes based on metrics.
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+Attatching a customer to a plan creates a subscription that will end at a defined time.
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+### Invoice and Bill
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+Once a subscription ends, an invoice is generated with line items for every usage and flat rate cost in the plan.
 
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+You can then use the invoice to collect payment manually or use our oauth integration with the payment processor of your choosing (currently supporting Stripe).
