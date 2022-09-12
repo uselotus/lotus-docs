@@ -6,6 +6,12 @@ sidebar_position: 1
 
 ## Installing
 
+Install the lotus-node package for use in your backend.
+
+```bash npm2yarn
+npm install lotus-node
+```
+
 ## Initializing
 
 ```jsx
