@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Lotus Docs",
   tagline: "Open-Core Pricing and Billing Engine",
-  url: "https://docs.uselotus.io/",
+  url: "https://docs.uselotus.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
