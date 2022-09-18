@@ -6,6 +6,8 @@ sidebar_position: 1
 
 Lotus is a powerful open-core pricing and billing engine, designed for API and SaaS companies to automate their custom usage-based pricing. Lotus will take care of your billing pipeline, and you can focus your engineering resources on what makes you special.
 
+Lotus is self-hostable and extensible, enabling companies to build their own frontend, apps, and integrations for themselves.
+
 ## How It Works
 
 Lotus manages your billing process from metering to pricing to invocing. This software solves some of the biggest issues when building a system to handle usage-based billing, including:

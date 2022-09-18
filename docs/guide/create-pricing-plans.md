@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Create Pricing Plans
 
-Plans are what assign prices to your products and usage metrics.
+Plans are the instructions that assign prices to your products and usage metrics. Create a new plan for every flat recurring fee you want to include in your pricing.
 
 Plans are composed of a few base features and additional **Plan Components**.
 
@@ -20,4 +20,10 @@ To define a plan you must define these fields:
 
 - A description (optional)
 
-Next you can attatch **Plan Components** to include usage-based pricing.
+- Plan Components (optional)
+
+Currently, each customer can only be on one plan, i.e only has one subscription.
+
+## Plan Components
+
+Plan components associate billable metrics or feature access to a given plan.
