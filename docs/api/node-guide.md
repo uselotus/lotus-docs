@@ -55,9 +55,11 @@ Subscriptions renew automatically, so you only attatch a plan to a customer once
 
 ```jsx title="Create Subscription"
 customer_id = "234261234";
-billing_plan = "Starter Plan";
+plan_id = "Starter Plan";
 
-lotus.createSubscription(customer_id, billing_plan);
+start_date = "07/22/2022"; //optional
+
+lotus.createSubscription(customer_id, plan_id, start_date);
 ```
 
 ## Cancelling Subscriptions
@@ -67,3 +69,5 @@ customer_id = "234261234";
 
 lotus.cancelSubscription(customer_id);
 ```
+
+## Checking what Plan A user Is On
