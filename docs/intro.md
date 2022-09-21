@@ -4,7 +4,9 @@ sidebar_position: 1
 
 # Why Lotus
 
-Lotus is a powerful open-core pricing and billing engine, designed for API and SaaS companies to automate their custom usage-based pricing. Lotus will take care of your billing pipeline, and you can focus your engineering resources on what makes you special.
+#### Lotus is a powerful open-core pricing and billing engine, designed for API and SaaS companies to automate their custom usage-based pricing.
+
+Lotus will take care of your billing pipeline, and you can focus your engineering resources on what makes you special.
 
 Lotus is self-hostable and extensible, enabling companies to build their own frontend, apps, and integrations for themselves.
 
@@ -33,3 +35,7 @@ Attatching a customer to a plan creates a subscription that will end at a define
 Once a subscription ends, an invoice is generated with line items for every usage and flat rate cost in the plan.
 
 You can then use the invoice to collect payment manually or use our oauth integration with the payment processor of your choosing (currently supporting Stripe).
+
+### Experiment with New Pricing
+
+We are building both analytics and predictive capabilities that enable you to not just implement but also iterate and improve on your pricing plans and deploy new pricing expeiments given certain logic. (More coming soon on the roadmap)

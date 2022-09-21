@@ -2,8 +2,30 @@
 sidebar_position: 1
 ---
 
-# Lotus API Reference
+# API Reference
 
 ## Getting Started
 
-You can access Lotus's api **directly** or through the **Node.js wrapper**.
+You can access Lotus's API directly or through the [SDKs](./api/node-guide.md) we have built.
+
+Your api key obtained in the Lotus Frontend Settings tab, is only visible once your create it and, therefore, must be stored securily. If you create a new API key it, your **old API key will be revoked** and it will not authenticate endpoints.
+
+### How to use your API key
+
+The api key must be passed into the _X-API-KEY_ header like so:
+
+```jsx
+const headers = {
+    X-API-KEY: LOTUS_API_KEY
+}
+```
+
+## Customers
+
+## Plans
+
+## Subscriptions
+
+## Events
+
+## Invoices

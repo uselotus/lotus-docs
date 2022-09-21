@@ -1,0 +1,47 @@
+---
+sidebar_position: 1
+---
+
+import CodeSegment from "@site/src/components/CodeSegment";
+
+# Ingesting Usage
+
+Much like many product analytics software, Lotus integrates into your backend and tracks usage events when you recognize them.
+
+Using our SDKs or native API calls, Lotus ingests events that then can be matched to billable metrics and associated to pricing plans. After sending a usage event to Lotus, you no loger have to worry about that event being tracked or computed for billing later down the line.
+
+## Setup
+
+For every billable metric you define, you need to put a track event API or SDK call in your backend with the associatied.
+
+Events are defined as the following:
+
+```jsx
+{
+    "event_name": string, // [required], name of the type of event, defined in your billable metrics
+    "idempotency_id": string,//[required], unique id of the specific event instance
+    "properties": object, //[optional] dictionary of extra information
+    "customer_id": string, //[required] customer associated with the event
+    "time_created": string, //[required] timestamp when the event occured
+}
+```
+
+<p>
+
+The <code>event_name</code> should correspond to what the event is and match what you define in your metrics.
+
+The <code>time_created</code> is an ISO 8601 format date in UTC (no timezone offset).
+
+The <code>idempotency_id</code> is a unique identifier for the specific event being passed in. Passing in a unique id allows Lotus to make sure no double counting occurs.
+
+The <code>properties</code> object is how you can extend your event information. In your metrics you can define properties to filer or aggregate over.
+
+_Therefore, you should include as many important characteristics in your properties as possible._
+
+The <code>customer_id</code> is the id you defined in your backend for the corresponding customer and the same id that you passed into Lotus when creating the customer.
+
+</p>
+
+## Events Debugger
+
+In order to be sure Lotus is collecting your events correctly, you can use the debugger in the Metrics Tab.

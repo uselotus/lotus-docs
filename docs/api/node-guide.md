@@ -28,10 +28,10 @@ Sending usage events to Lotus is as easy as inputing a line of code in your back
 
 ```jsx
 lotus.trackEvent({
-  idempotencyId: "234234", //Randomly generated ID
-  eventName: "test", // Event Name should match a defined billable metric
-  timeCreated: new Date(), //time that the event occured
-  customerId: "123",
+  idempotency_id: "234234", //Randomly generated ID
+  event_name: "test", // Event Name should match a defined billable metric
+  time_created: new Date(), //time that the event occured
+  customer_id: "123",
   properties: { test: "test", numericQuantity: 3.1415 }, //optional, pass in any additional properties you want to aggregate or measure
 });
 ```
@@ -42,9 +42,9 @@ In order to stay in sync with your application, Lotus must create a customer whe
 
 ```jsx title="Create Customer"
 customer_id = "234261234";
-customer_name = "Jane Doe";
+name = "Jane Doe";
 
-lotus.createCustomer(customer_id, customer_name);
+lotus.createCustomer(customer_id, name);
 ```
 
 ## Creating Subscriptions
@@ -55,11 +55,11 @@ Subscriptions renew automatically, so you only attatch a plan to a customer once
 
 ```jsx title="Create Subscription"
 customer_id = "234261234";
-plan_id = "Starter Plan";
+billing_plan_id = "Starter Plan";
 
 start_date = "07/22/2022"; //optional
 
-lotus.createSubscription(customer_id, plan_id, start_date);
+lotus.createSubscription(customer_id, billing_plan_id, start_date);
 ```
 
 ## Cancelling Subscriptions
@@ -69,5 +69,3 @@ customer_id = "234261234";
 
 lotus.cancelSubscription(customer_id);
 ```
-
-## Checking what Plan A user Is On

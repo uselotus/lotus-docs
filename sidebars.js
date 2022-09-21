@@ -22,7 +22,11 @@ const sidebars = {
     {
       type: "category",
       label: "Guide",
-      items: ["guide/create-billable-metrics", "guide/create-pricing-plans"],
+      items: [
+        "guide/create-billable-metrics",
+        "guide/create-pricing-plans",
+        "guide/ingesting-usage-events",
+      ],
     },
   ],
   apiSidebar: [
@@ -30,7 +34,7 @@ const sidebars = {
     {
       type: "category",
       items: ["api/node-guide"],
-      label: "Reference",
+      label: "SDKs",
     },
   ],
 };

@@ -10,17 +10,19 @@ Plans are composed of a few base features and additional **Plan Components**.
 
 To define a plan you must define these fields:
 
-- An interval of either weekly, monthly or yearly
+<p>
 
-  - defines the billing cycle for when customers on the plan will get invoiced
+- An <b>interval</b> of either <code>weekly</code>, <code>monthly</code>, or <code>yearly</code>. This defines the length billing cycle for when customers on the plan will get invoiced.
 
-- A name
+- A <b>name</b>.
 
-- A flat subscription rate
+- A <b> flat recurring fee</b>.
 
-- A description (optional)
+- A <b> description </b> (optional)
 
-- Plan Components (optional)
+- <b> Plan Components </b> (optional). These are how we associate variable charges based on metrics to plans. Think of these as extra line items on an invoice.
+
+</p>
 
 Currently, each customer can only be on one plan, i.e only has one subscription.
 
