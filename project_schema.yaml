@@ -1,0 +1,962 @@
+openapi: 3.0.3
+info:
+  title: Lotus API
+  version: 0.0.1
+  description:
+    Lotus is an open-core pricing and billing engine. We enable API companies
+    to automate and optimize their custom usage-based pricing for any metric.
+paths:
+  /api/customers/:
+    get:
+      operationId: customers_list
+      description: A simple ViewSet for viewing and editing Customers.
+      tags:
+        - customers
+      security:
+        - OrganizationApiKeyAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+          description: ""
+    post:
+      operationId: customers_create
+      description: A simple ViewSet for viewing and editing Customers.
+      tags:
+        - customers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/Customer"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Customer"
+        required: true
+      security:
+        - OrganizationApiKeyAuth: []
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+          description: ""
+  /api/draft_invoice/:
+    get:
+      operationId: get current usgage
+      description:
+        Pagination-enabled endpoint for retrieving an organization's event
+        stream.
+      parameters:
+        - in: query
+          name: customer_id
+          schema:
+            type: string
+            minLength: 1
+          required: true
+      tags:
+        - draft_invoice
+      security:
+        - OrganizationApiKeyAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+          description: ""
+  /api/event_preview/:
+    get:
+      operationId: event_preview_retrieve
+      description:
+        Pagination-enabled endpoint for retrieving an organization's event
+        stream.
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: true
+      tags:
+        - event_preview
+      security:
+        - OrganizationApiKeyAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventPreview"
+          description: ""
+  /api/plans/:
+    get:
+      operationId: plans_list
+      description: A simple ViewSet for viewing and editing BillingPlans.
+      tags:
+        - plans
+      security:
+        - OrganizationApiKeyAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BillingPlanRead"
+          description: ""
+  /api/subscriptions/:
+    get:
+      operationId: subscriptions_list
+      description: A simple ViewSet for viewing and editing Subscriptions.
+      tags:
+        - subscriptions
+      security:
+        - OrganizationApiKeyAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SubscriptionRead"
+          description: ""
+    post:
+      operationId: subscriptions_create
+      description: A simple ViewSet for viewing and editing Subscriptions.
+      tags:
+        - subscriptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Subscription"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/Subscription"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Subscription"
+        required: true
+      security:
+        - OrganizationApiKeyAuth: []
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+          description: ""
+  /api/subscriptions/{id}/:
+    get:
+      operationId: subscriptions_retrieve
+      description: A simple ViewSet for viewing and editing Subscriptions.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this subscription.
+          required: true
+      tags:
+        - subscriptions
+      security:
+        - OrganizationApiKeyAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubscriptionRead"
+          description: ""
+    put:
+      operationId: subscriptions_update
+      description: A simple ViewSet for viewing and editing Subscriptions.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this subscription.
+          required: true
+      tags:
+        - subscriptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Subscription"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/Subscription"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Subscription"
+        required: true
+      security:
+        - OrganizationApiKeyAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+          description: ""
+  /api/track/:
+    post:
+      operationId: track_event
+      tags:
+        - track
+      security:
+        - OrganizationApiKeyAuth: []
+      responses:
+        "200":
+          description: No response body
+components:
+  schemas:
+    AggregationTypeEnum:
+      enum:
+        - count
+        - sum
+        - max
+        - unique
+      type: string
+    BillableMetric:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        event_name:
+          type: string
+          maxLength: 200
+        property_name:
+          type: string
+          nullable: true
+          maxLength: 200
+        aggregation_type:
+          $ref: "#/components/schemas/AggregationTypeEnum"
+        carries_over:
+          type: boolean
+        billable_metric_name:
+          type: string
+          maxLength: 200
+      required:
+        - event_name
+        - id
+    BillingPlan:
+      type: object
+      properties:
+        time_created:
+          type: string
+          format: date-time
+          readOnly: true
+        currency:
+          type: string
+          maxLength: 30
+        interval:
+          $ref: "#/components/schemas/IntervalEnum"
+        flat_rate:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        pay_in_advance:
+          type: boolean
+        billing_plan_id:
+          type: string
+          maxLength: 255
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 256
+        components:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlanComponent"
+      required:
+        - components
+        - flat_rate
+        - interval
+        - name
+        - pay_in_advance
+        - time_created
+    BillingPlanRead:
+      type: object
+      properties:
+        time_created:
+          type: string
+          format: date
+          readOnly: true
+        currency:
+          type: string
+          maxLength: 30
+        interval:
+          $ref: "#/components/schemas/IntervalEnum"
+        flat_rate:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        pay_in_advance:
+          type: boolean
+        billing_plan_id:
+          type: string
+          maxLength: 255
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 256
+        components:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlanComponentRead"
+        id:
+          type: integer
+          readOnly: true
+      required:
+        - components
+        - flat_rate
+        - id
+        - interval
+        - name
+        - pay_in_advance
+        - time_created
+    Customer:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        customer_id:
+          type: string
+          maxLength: 40
+        balance:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+      required:
+        - customer_id
+        - name
+    CustomerName:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+      required:
+        - name
+    CustomerRevenue:
+      type: object
+      properties:
+        subscriptions:
+          type: array
+          items:
+            type: string
+        total_revenue_due:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        customer_name:
+          type: string
+        customer_id:
+          type: string
+      required:
+        - customer_id
+        - customer_name
+        - subscriptions
+        - total_revenue_due
+    CustomerRevenueSummary:
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: "#/components/schemas/CustomerRevenue"
+      required:
+        - customers
+    DayMetricRevenue:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        metric_revenue:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+      required:
+        - date
+        - metric_revenue
+    DayMetricUsage:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        customer_usages:
+          type: object
+          additionalProperties:
+            type: number
+            format: double
+            maximum: 10000000000
+            minimum: -10000000000
+            exclusiveMaximum: true
+            exclusiveMinimum: true
+      required:
+        - customer_usages
+        - date
+    Event:
+      type: object
+      properties:
+        event_name:
+          type: string
+          maxLength: 200
+        properties:
+          type: object
+          additionalProperties: {}
+          nullable: true
+        time_created:
+          type: string
+          format: date-time
+        idempotency_id:
+          type: string
+          maxLength: 255
+        customer_id:
+          type: string
+          readOnly: true
+      required:
+        - customer_id
+        - event_name
+        - idempotency_id
+        - time_created
+    EventPreview:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: "#/components/schemas/Event"
+        total_pages:
+          type: integer
+      required:
+        - events
+        - total_pages
+    IntervalEnum:
+      enum:
+        - week
+        - month
+        - year
+      type: string
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        cost_due_currency:
+          type: string
+          readOnly: true
+        cost_due:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        issue_date:
+          type: string
+          format: date-time
+          readOnly: true
+        invoice_pdf:
+          type: string
+          format: uri
+          nullable: true
+        status:
+          $ref: "#/components/schemas/InvoiceStatusEnum"
+        payment_intent_id:
+          type: string
+          nullable: true
+          maxLength: 240
+        line_items:
+          type: object
+          additionalProperties: {}
+        organization:
+          type: object
+          additionalProperties: {}
+        customer:
+          type: object
+          additionalProperties: {}
+        subscription:
+          type: object
+          additionalProperties: {}
+      required:
+        - cost_due_currency
+        - customer
+        - id
+        - issue_date
+        - line_items
+        - organization
+        - status
+        - subscription
+    InvoiceStatusEnum:
+      enum:
+        - requires_payment_method
+        - requires_action
+        - processing
+        - succeeded
+        - draft
+        - organization_not_connected_to_stripe
+        - customer_not_connected_to_stripe
+      type: string
+    PatchedBillableMetric:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        event_name:
+          type: string
+          maxLength: 200
+        property_name:
+          type: string
+          nullable: true
+          maxLength: 200
+        aggregation_type:
+          $ref: "#/components/schemas/AggregationTypeEnum"
+        carries_over:
+          type: boolean
+        billable_metric_name:
+          type: string
+          maxLength: 200
+    PatchedBillingPlan:
+      type: object
+      properties:
+        time_created:
+          type: string
+          format: date-time
+          readOnly: true
+        currency:
+          type: string
+          maxLength: 30
+        interval:
+          $ref: "#/components/schemas/IntervalEnum"
+        flat_rate:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        pay_in_advance:
+          type: boolean
+        billing_plan_id:
+          type: string
+          maxLength: 255
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 256
+        components:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlanComponent"
+    PatchedCustomer:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        customer_id:
+          type: string
+          maxLength: 40
+        balance:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+    PatchedInvoice:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        cost_due_currency:
+          type: string
+          readOnly: true
+        cost_due:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        issue_date:
+          type: string
+          format: date-time
+          readOnly: true
+        invoice_pdf:
+          type: string
+          format: uri
+          nullable: true
+        status:
+          $ref: "#/components/schemas/InvoiceStatusEnum"
+        payment_intent_id:
+          type: string
+          nullable: true
+          maxLength: 240
+        line_items:
+          type: object
+          additionalProperties: {}
+        organization:
+          type: object
+          additionalProperties: {}
+        customer:
+          type: object
+          additionalProperties: {}
+        subscription:
+          type: object
+          additionalProperties: {}
+    PatchedPlanComponent:
+      type: object
+      properties:
+        billable_metric:
+          type: integer
+        free_metric_quantity:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        cost_per_metric:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        metric_amount_per_cost:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        max_amount:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+          nullable: true
+    PatchedSubscription:
+      type: object
+      properties:
+        customer_id:
+          type: string
+        billing_plan_id:
+          type: string
+        start_date:
+          type: string
+          format: date
+        status:
+          $ref: "#/components/schemas/Status2b4Enum"
+    PatchedUser:
+      type: object
+      properties:
+        username:
+          type: string
+          description:
+            Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        password:
+          type: string
+          maxLength: 128
+    PeriodMetricRevenueResponse:
+      type: object
+      properties:
+        daily_usage_revenue_period_1:
+          type: array
+          items:
+            $ref: "#/components/schemas/PeriodSingleMetricRevenue"
+        total_revenue_period_1:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        daily_usage_revenue_period_2:
+          type: array
+          items:
+            $ref: "#/components/schemas/PeriodSingleMetricRevenue"
+        total_revenue_period_2:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+      required:
+        - daily_usage_revenue_period_1
+        - daily_usage_revenue_period_2
+        - total_revenue_period_1
+        - total_revenue_period_2
+    PeriodMetricUsageResponse:
+      type: object
+      properties:
+        metrics:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/PeriodSingleMetricUsage"
+      required:
+        - metrics
+    PeriodSingleMetricRevenue:
+      type: object
+      properties:
+        metric:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/DayMetricRevenue"
+        total_revenue:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+      required:
+        - data
+        - metric
+        - total_revenue
+    PeriodSingleMetricUsage:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/DayMetricUsage"
+        total_usage:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        top_n_customers:
+          type: array
+          items:
+            $ref: "#/components/schemas/CustomerName"
+        top_n_customers_usage:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+      required:
+        - data
+        - total_usage
+    PeriodSubscriptionsResponse:
+      type: object
+      properties:
+        period_1_total_subscriptions:
+          type: integer
+        period_1_new_subscriptions:
+          type: integer
+        period_2_total_subscriptions:
+          type: integer
+        period_2_new_subscriptions:
+          type: integer
+      required:
+        - period_1_new_subscriptions
+        - period_1_total_subscriptions
+        - period_2_new_subscriptions
+        - period_2_total_subscriptions
+    PlanComponent:
+      type: object
+      properties:
+        billable_metric:
+          type: integer
+        free_metric_quantity:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        cost_per_metric:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        metric_amount_per_cost:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        max_amount:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+          nullable: true
+      required:
+        - billable_metric
+        - cost_per_metric
+    PlanComponentRead:
+      type: object
+      properties:
+        billable_metric:
+          $ref: "#/components/schemas/BillableMetric"
+        free_metric_quantity:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        cost_per_metric:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        metric_amount_per_cost:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+        max_amount:
+          type: number
+          format: double
+          maximum: 10000000000
+          minimum: -10000000000
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+          nullable: true
+        id:
+          type: integer
+          readOnly: true
+      required:
+        - billable_metric
+        - cost_per_metric
+        - id
+    RegistrationDetail:
+      type: object
+      properties:
+        company_name:
+          type: string
+        industry:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        username:
+          type: string
+      required:
+        - company_name
+        - email
+        - industry
+        - password
+        - username
+    Status2b4Enum:
+      enum:
+        - active
+        - ended
+        - not_started
+      type: string
+    Subscription:
+      type: object
+      properties:
+        customer_id:
+          type: string
+        billing_plan_id:
+          type: string
+        start_date:
+          type: string
+          format: date
+        status:
+          $ref: "#/components/schemas/Status2b4Enum"
+      required:
+        - billing_plan_id
+        - customer_id
+        - start_date
+    SubscriptionRead:
+      type: object
+      properties:
+        customer:
+          $ref: "#/components/schemas/Customer"
+        billing_plan:
+          $ref: "#/components/schemas/BillingPlanRead"
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        status:
+          $ref: "#/components/schemas/Status2b4Enum"
+      required:
+        - billing_plan
+        - customer
+        - end_date
+        - start_date
+  securitySchemes:
+    OrganizationApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
