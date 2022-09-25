@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const plugin = require("@docusaurus/remark-plugin-npm2yarn");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -42,6 +43,15 @@ const config = {
           customCss: require.resolve("./src/css/custom.css"),
         },
       }),
+    ],
+  ],
+  plugins: [
+    [
+      "@docusaurus/plugin-google-analytics",
+      {
+        trackingID: "G-4RQJBZEHSW",
+        anonymizeIP: true,
+      },
     ],
   ],
 
