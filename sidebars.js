@@ -21,7 +21,7 @@ const sidebars = {
     "self-hosting",
     {
       type: "category",
-      label: "Guide",
+      label: "Documentation",
       items: [
         "guide/create-billable-metrics",
         "guide/create-pricing-plans",
