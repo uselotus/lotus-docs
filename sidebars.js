@@ -33,7 +33,7 @@ const sidebars = {
     "api",
     {
       type: "category",
-      items: ["api/node-guide"],
+      items: ["api/node-guide", "api/python-guide"],
       label: "SDKs",
     },
   ],
