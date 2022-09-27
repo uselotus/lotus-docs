@@ -14,15 +14,15 @@ This library uses an internal queue to make calls non-blocking and fast. It also
 pip install lotus-python
 ```
 
-In your app, import the lotus library and set your api key **before** making any calls.
+First grab a new api key from the Settings tab. Then change the host to wherever you want to send data to and omit the line if you are using Lotus Cloud.
+
+Make sure to import the lotus library and set your api key **before** making any calls.
 
 ```python
 import lotus
-
 lotus.api_key = 'YOUR API KEY'
+lotus.host = 'https://your-lotus-instance.com'
 ```
-
-You can find your key in the /settings page in Lotus.
 
 To debug, you can set debug mode.
 ```python
@@ -46,7 +46,15 @@ Optionally you can submit
 
 For example:
 ```python
-lotus.track_event(customer_id='customer123', event_name='api_call', properties={'region': 'US', 'mb_used': 150})
+lotus.track_event(
+  customer_id='customer123', 
+  event_name='api_call', 
+  properties={
+      'region': 'US', 
+      'mb_used': 150
+    }
+  idemptotency_id='c9799bf9-e5c9-4007-8d10-0663d045d23c'
+)
 ```
 
 ### Create Customer
@@ -58,12 +66,15 @@ A `create_customer` call requires
 
 Optionally you can submit
 - `currency` what currency your customer is billed in. If you don't pass in a currency, we will default to USD.
+- `payment_provider_id` if you are using Stripe, you can pass in the payment provider id to associate the customer with a payment method. This will allow you to charge the customer later on. If you don't pass in a payment provider id, we can still connect a customer to Stripe, but it requires
+the `name` on Lotus to match the `name` on Stripe.
 
 For example:
 ```python
 lotus.create_customer(
     customer_id='customer_id',
-    name='Corporation Inc.'
+    name='Corporation Inc.',
+    currency='USD'
 )
 ```
 
@@ -78,12 +89,19 @@ A `create_subscription` call requires
 - `billing_plan_id` which uniquely identifies your billing plan in your backend. You can find the billing plan id in the billing plan page in Lotus.
 - `start_date` the date the subscription starts. This should be a datetime string in UTC.
 
+Optionally you can submit:
+- `end_date` the date the subscription ends. This should be a datetime string in UTC. If you don't set it (recommended), we will 
+use the information in the billing plan to automatically calculate this.
+- `subscription_uid` a unique identifier for the subscription. If you don't pass in a subscription_uid, we will generate one for you using UUID4.
+You will need the subscription_uid to update or cancel the subscription. You can eeither store it yourself or look for it in the subscriptions page in the Lotus app.
+
 For example:
 ```python
 lotus.create_subscription(
   customer_id='customer_1', 
   billing_plan_id='billing_plan_5',
-  start_date='2020-01-01T00:00:00Z'
+  start_date='2020-01-01T00:00:00Z',
+  subscription_uid='cust1_bp_5_2020-01-01'
 )
 ```
 
@@ -99,7 +117,8 @@ For example:
 ```python
 lotus.cancel_subscription(
   subscription_uid='subscription_4', 
-  bill_now='True')
+  bill_now='True'
+)
 ```
 
 ## Thank you

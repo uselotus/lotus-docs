@@ -28,6 +28,7 @@ const sidebars = {
         "guide/ingesting-usage-events",
       ],
     },
+    "contributing",
   ],
   apiSidebar: [
     "api",
