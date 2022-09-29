@@ -65,7 +65,26 @@ lotus.createSubscription(customer_id, billing_plan_id, start_date);
 ## Cancelling Subscriptions
 
 ```jsx title="Cancel Subscription"
+subscription_uid = "234261234";
+
+
+lotus.cancelSubscription(
+  subscription_uid=subscription_uid, 
+  bill_now=true,
+  revoke_access=true
+)
+```
+
+## Get Customer Access
+
+```jsx title="Get Customer Access"
 customer_id = "234261234";
 
-lotus.cancelSubscription(customer_id);
+//only pass in one of the two
+event_name = "test";
+feature_name = "slack_integration";
+
+lotus.getCustomerAccess(customer_id, event_name=event_name);
+
+lotus.getCustomerAccess(customer_id, feature_name=event_name);
 ```
