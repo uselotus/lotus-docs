@@ -38,7 +38,7 @@ You can track absolutely anything, and with the extensible and customizable prop
 
 A `track_event` call requires
  - `event_name` should correspond to what the event is and match what you define in your metrics.
- - `customer_id`  the id you defined in your backend for the corresponding customer and the same id that you passed into Lotus when creating the customer
+ - `customer_id` the id you defined in your backend for the corresponding customer and the same id that you passed into Lotus when creating the customer
 
 Optionally you can submit
 - `properties`, which can be a dict with any information you'd like to add.  In your metrics you can define properties to filer or aggregate over.
@@ -118,6 +118,28 @@ For example:
 lotus.cancel_subscription(
   subscription_uid='subscription_4', 
   bill_now='True'
+)
+```
+
+### Get Customer Access
+
+Checks whether a customer has access to a specific feature or enough usage in their plan to register an event. This is useful if you want to gate access to certain features in your app based on usage.
+
+A `get_customer_access` call requires
+- `customer_id` the id you defined in your backend for the corresponding customer and the same id that you passed into Lotus when creating the customer
+
+AND EITHER
+- `feature_name` name of the feature you want to check access for.
+
+OR
+
+- `event_name` name of the event you want to check access for. In the backend we'll check whether any of the plan components associated with the event have surpassed their limit.
+
+For example:
+```python
+lotus.get_customer_access(
+  customer_id='customer123', 
+  event_name='api_call'
 )
 ```
 
