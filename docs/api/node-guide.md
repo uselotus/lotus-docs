@@ -81,10 +81,15 @@ lotus.cancelSubscription(
 customer_id = "234261234";
 
 //only pass in one of the two
+
+//event limits
 event_name = "test";
+event_limit_type="total"; //total or free
+
+//feature access
 feature_name = "slack_integration";
 
-lotus.getCustomerAccess(customer_id, event_name=event_name);
+lotus.getCustomerAccess(customer_id, event_name=event_name, event_limit_type=event_limit_type);
 
 lotus.getCustomerAccess(customer_id, feature_name=event_name);
 ```

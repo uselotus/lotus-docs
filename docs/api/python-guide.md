@@ -134,12 +134,19 @@ AND EITHER
 OR
 
 - `event_name` name of the event you want to check access for. In the backend we'll check whether any of the plan components associated with the event have surpassed their limit.
+- `event_limit_type` the type of limit you want to check. Pass in `free` to check if the customer has access to free units, or `total` to see if the customer has access to the event_name at all.
 
 For example:
 ```python
 lotus.get_customer_access(
   customer_id='customer123', 
-  event_name='api_call'
+  event_name='api_call',
+  event_limit_type='free'
+)
+
+lotus.get_customer_access(
+  customer_id='customer123', 
+  feature_name='slack_integration',
 )
 ```
 
