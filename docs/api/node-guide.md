@@ -22,10 +22,22 @@ const lotus = new Lotus(api_key, {
 });
 ```
 
-## Tracking Events
+## Making calls
 
-Sending usage events to Lotus is as easy as inputing a line of code in your backend for each event you want to track.
+### Track Event
 
+Track event is the most common call you'll make. It's used to capture any event that happens in your app that you want to bill over eventually.
+You can track absolutely anything, and with the extensible and customizable properties field, you can add as much information as you want.
+
+A `track_event` call requires
+ - `event_name` should correspond to what the event is and match what you define in your metrics.
+ - `customer_id` the id you defined in your backend for the corresponding customer and the same id that you passed into Lotus when creating the customer
+
+Optionally you can submit
+- `properties`, which can be a dict with any information you'd like to add.  In your metrics you can define properties to filer or aggregate over.
+ - `idempotency_id` is a unique identifier for the specific event being passed in. Passing in a unique id allows Lotus to make sure no double counting occurs. If you don't pass in an idempotency_id, we will generate one for you using UUID4.
+
+For example:
 ```jsx
 lotus.trackEvent({
   idempotency_id: "234234", //Randomly generated ID
@@ -36,60 +48,146 @@ lotus.trackEvent({
 });
 ```
 
-## Creating Customers
+### Get Customers
+To get the customers associated with the organization to which the API key belongs to, use the `get_customers` call. This call returns a list of customers, each with the following fields:
+- `customer_id`
+- `customer_name`
+- `balance`, the number of dollars of credit the user has. 
 
-In order to stay in sync with your application, Lotus must create a customer when a new customer signs up. Use the appropriate library to create a customer with the same customer id that you store internally in your backend.
-
-```jsx title="Create Customer"
-customer_id = "234261234";
-name = "Jane Doe";
-
-lotus.createCustomer(customer_id, name);
+For example:
+```jsx
+lotus.getCustomers()
 ```
 
-## Creating Subscriptions
+### Create Customer
+To let Lotus know that you have a new customer, simply use the create customer method. 
 
-In order to add a plan to a customer, or switch the customer's current plan, programatically create a subscription, usually after a user has submitted their credit card info or signed up for a new plan.
+A `create_customer` call requires
+- `customer_id` which uniquely identifies your customer in your backend. This is the same id you'll pass into `track_event` calls to identify the customer, in addition to other calls, so make sure it's available to you.
+- `name` a name for your customer
 
-Subscriptions renew automatically, so you only attatch a plan to a customer once.
+Optionally you can submit
+- `currency` what currency your customer is billed in. If you don't pass in a currency, we will default to USD.
+- `payment_provider_id` if you are using Stripe, you can pass in the payment provider id to associate the customer with a payment method. This will allow you to charge the customer later on. If you don't pass in a payment provider id, we can still connect a customer to Stripe, but it requires
+the `name` on Lotus to match the `name` on Stripe.
 
-```jsx title="Create Subscription"
-customer_id = "234261234";
-billing_plan_id = "Starter Plan";
-
-start_date = "07/22/2022"; //optional
-
-lotus.createSubscription(customer_id, billing_plan_id, start_date);
-```
-
-## Cancelling Subscriptions
-
-```jsx title="Cancel Subscription"
-subscription_uid = "234261234";
-
-
-lotus.cancelSubscription(
-  subscription_uid=subscription_uid, 
-  bill_now=true,
-  revoke_access=true
+For example:
+```jsx
+lotus.createCustomer(
+    customer_id='customer_id',
+    name='Corporation Inc.',
+    currency='USD'
 )
 ```
 
-## Get Customer Access
+The most obvious place to make this call is whenever a user signs up, or when they update their information.
 
-```jsx title="Get Customer Access"
-customer_id = "234261234";
+### Get Current Usage
+To get a snapshot of the customer's usage for currently active subscriptions, use the `get_current_usage` call. This call returns a list of subscriptions, each with the following fields:
 
-//only pass in one of the two
 
-//event limits
-event_name = "test";
-event_limit_type="total"; //total or free
+- `cost_due`, the quantity the user owes
+- `cost_due_currency`, the currency of the cost due
+- `cust_connected_to_payment_provider`, whether the customer is connected to a payment provider
+- `org_connected_to_cust_payment_provider`, whether the organization is connected to the customer's specified payment provider
+- `line_items`, a dictionary containing information about the usage and revenue generated from each plan component
+- `organization`, a dictionary with the `company_name` of the organization
+- `customer`, a dictionary with the `customer_name` and `customer_id` of the customer
+- `subscription`, a dictionary with the `start_date`, `end_date`, `billing_plan`, and `subscription_id` of the subscription
 
-//feature access
-feature_name = "slack_integration";
 
-lotus.getCustomerAccess(customer_id, event_name=event_name, event_limit_type=event_limit_type);
+A `get_current_usage` call requires
+- `customer_id` which uniquely identifies your customer in your backend. 
 
-lotus.getCustomerAccess(customer_id, feature_name=event_name);
+For example:
+```jsx
+lotus.getCurrentUsage(
+    customer_id='customer_id',
+)
+```
+
+### Get Plans
+To get the current billing plans associated with the organization to which the API key belongs to, use the `get_plans` call. This call returns a list of plans objects.
+
+For example:
+```jsx
+lotus.getPlans()
+```
+
+### Get Subscriptions
+To get the current subscriptions associated with the organization to which the API key belongs to, use the `get_subscriptions` call. This call returns a list of subscription objects.
+
+For example:
+```jsx
+lotus.getSubscriptions()
+```
+
+### Create Subscription
+
+A subscription associates one of your customers with one of your billing plans.
+
+A `create_subscription` call requires
+- `customer_id` which uniquely identifies your customer in your backend. This is the same id you'll pass into `track_event` calls to identify the customer, in addition to other calls, so make sure it's available to you.
+- `billing_plan_id` which uniquely identifies your billing plan in your backend. You can find the billing plan id in the billing plan page in Lotus.
+- `start_date` the date the subscription starts. This should be a datetime string in UTC.
+
+Optionally you can submit:
+- `end_date` the date the subscription ends. This should be a datetime string in UTC. If you don't set it (recommended), we will 
+use the information in the billing plan to automatically calculate this.
+- `subscription_id` a unique identifier for the subscription. If you don't pass in a subscription_id, we will generate one for you using UUID4.
+You will need the subscription_id to update or cancel the subscription. You can eeither store it yourself or look for it in the subscriptions page in the Lotus app.
+
+For example:
+```jsx
+lotus.createSubscription(
+  customer_id='customer_1', 
+  billing_plan_id='billing_plan_5',
+  start_date='2020-01-01T00:00:00Z',
+  subscription_id='cust1_bp_5_2020-01-01'
+)
+```
+
+### Cancel Subscription
+
+Cancels a subscription. You can optionally decide whether to bill for the usage so far that period or not.
+
+A `cancel_subscription` call requires
+- `subscription_id` the unique ID of the subscription you want to cancel. You can find the subscription uid in the subscription page in Lotus.
+- `bill_now` whether to bill for the usage so far that period or not. If you don't pass in a value, we will default to `True`.
+
+For example:
+```jsx
+lotus.cancelSubscription(
+  subscription_id='subscription_4', 
+  bill_now='True'
+)
+```
+
+### Get Customer Access
+
+Checks whether a customer has access to a specific feature or enough usage in their plan to register an event. This is useful if you want to gate access to certain features in your app based on usage.
+
+A `get_customer_access` call requires
+- `customer_id` the id you defined in your backend for the corresponding customer and the same id that you passed into Lotus when creating the customer
+
+AND EITHER
+- `feature_name` name of the feature you want to check access for.
+
+OR
+
+- `event_name` name of the event you want to check access for. In the backend we'll check whether any of the plan components associated with the event have surpassed their limit.
+- `event_limit_type` the type of limit you want to check. Pass in `free` to check if the customer has access to free units, or `total` to see if the customer has access to the event_name at all.
+
+For example:
+```jsx
+lotus.getCustomerAccess(
+  customer_id='customer123', 
+  event_name='api_call',
+  event_limit_type='free'
+)
+
+lotus.getCustomerAccess(
+  customer_id='customer123', 
+  feature_name='slack_integration',
+)
 ```
