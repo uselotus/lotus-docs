@@ -11,6 +11,12 @@ If you have a suggestion that would make this better, please [fork the repo](htt
 
 Don't forget to give the project a star! Thanks again!
 
+## Extensibility
+
+Lotus aims to serve as many use cases as possible! We want to make sure that you can extend the project to fit your needs. We have a special tag in our issues for features that already have a framework or template for you to use, allowing you to enhance the code to fit your needs seamlessly. For example, building a new integration with a payment processor, or hooking up a different CRM.
+
+You can find these issues tagged with the [extensibility label in our Github issues](https://github.com/uselotus/lotus/issues?q=is%3Aopen+is%3Aissue+label%3Aextensibility).
+
 ## :construction_worker: Local Development
 In order to develop locally, we recommend using Docker to set up the environment, which allows for hot reloading of both frontend and backend code.
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
@@ -29,7 +35,7 @@ You should now be able to access the homepage at [localhost:8000/](http://localh
 
 If you make any changes to the backend settings, you might need to restart the Docker container.
 
-### :mag: Before Committing
+#### :mag: Before Committing
 1. Run tests
    ```sh
    chmod +x ./scripts/run-tests-docker.sh  && ./scripts/run-tests-docker.sh
@@ -39,7 +45,7 @@ If you make any changes to the backend settings, you might need to restart the D
    chmod +x ./scripts/run-codestyle-docker.sh  && ./scripts/run-codestyle-docker.sh
    ```
 
-### Local Development Env variables
+#### Local Development Env variables
 
 <table>
   <tr>
