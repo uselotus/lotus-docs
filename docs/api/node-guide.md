@@ -64,20 +64,20 @@ To let Lotus know that you have a new customer, simply use the create customer m
 
 A `create_customer` call requires
 - `customer_id` which uniquely identifies your customer in your backend. This is the same id you'll pass into `track_event` calls to identify the customer, in addition to other calls, so make sure it's available to you.
-- `name` a name for your customer
+- `customer_name` a name for your customer
 
 Optionally you can submit
 - `currency` what currency your customer is billed in. If you don't pass in a currency, we will default to USD.
-- `payment_provider_id` if you are using Stripe, you can pass in the payment provider id to associate the customer with a payment method. This will allow you to charge the customer later on. If you don't pass in a payment provider id, we can still connect a customer to Stripe, but it requires
-the `name` on Lotus to match the `name` on Stripe.
+- `payment_provider_id` if you are using Stripe, you can pass in the payment provider id to associate the customer with a payment method. This will allow you to charge the customer later on. If you don't pass in a payment provider id, we can still connect a customer to Stripe, but it requires the `customer_name` on Lotus to match the `name` on Stripe.
 
 For example:
 ```jsx
-lotus.createCustomer(
-    customer_id='customer_id',
-    name='Corporation Inc.',
-    currency='USD'
-)
+lotus.createCustomer({
+  customer_id: "123",
+  customer_name: "Test Customer",
+  currency: "USD", //optional
+  payment_provider_id: "cus_123", //optional
+});
 ```
 
 The most obvious place to make this call is whenever a user signs up, or when they update their information.
@@ -101,9 +101,9 @@ A `get_current_usage` call requires
 
 For example:
 ```jsx
-lotus.getCurrentUsage(
-    customer_id='customer_id',
-)
+lotus.getCurrentUsage({
+  customer_id: "123",
+});
 ```
 
 ### Get Plans
@@ -139,12 +139,11 @@ You will need the subscription_id to update or cancel the subscription. You can 
 
 For example:
 ```jsx
-lotus.createSubscription(
-  customer_id='customer_1', 
-  billing_plan_id='billing_plan_5',
-  start_date='2020-01-01T00:00:00Z',
-  subscription_id='cust1_bp_5_2020-01-01'
-)
+lotus.createSubscription({
+  customer_id: "customer_123",
+  billing_plan_id: "billing_plan_5",
+  start_date: new Date(),
+});
 ```
 
 ### Cancel Subscription
@@ -153,14 +152,16 @@ Cancels a subscription. You can optionally decide whether to bill for the usage 
 
 A `cancel_subscription` call requires
 - `subscription_id` the unique ID of the subscription you want to cancel. You can find the subscription uid in the subscription page in Lotus.
-- `bill_now` whether to bill for the usage so far that period or not. If you don't pass in a value, we will default to `True`.
+- `bill_now` whether to bill for the usage so far that period or not. If you dont pass in a value, we will default to `True`
+- `revoke_access` whether to cancel and revoke, or simply let the subscription "run out" without renewing. Keep in mind that if `bill_now` is true, then `revoke_access` must be true too. 
 
 For example:
 ```jsx
-lotus.cancelSubscription(
-  subscription_id='subscription_4', 
-  bill_now='True'
-)
+lotus.cancelSubscription({
+  subscription_id: "subscription_123",
+  bill_now: true,
+  revoke_access: true,
+});
 ```
 
 ### Get Customer Access
@@ -180,14 +181,14 @@ OR
 
 For example:
 ```jsx
-lotus.getCustomerAccess(
-  customer_id='customer123', 
-  event_name='api_call',
-  event_limit_type='free'
-)
+lotus.getCustomerAccess({
+  customer_id: "customer_123",
+  feature_name: "feature_123",
+});
 
-lotus.getCustomerAccess(
-  customer_id='customer123', 
-  feature_name='slack_integration',
-)
+lotus.getCustomerAccess({
+  customer_id: "customer_123",
+  event_name: "event_123",
+  event_limit_type: "free",
+});
 ```
