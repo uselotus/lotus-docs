@@ -28,6 +28,13 @@ const sidebars = {
         "guide/ingesting-usage-events",
       ],
     },
+    {
+      type: "category",
+      label: "Extensibility",
+      items: [
+        "extensibility/integrate-payment-providers",
+      ],
+    },
     "contributing",
   ],
   apiSidebar: [
