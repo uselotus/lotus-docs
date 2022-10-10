@@ -33,6 +33,7 @@ const sidebars = {
       label: "Extensibility",
       items: [
         "extensibility/integrate-payment-providers",
+        "extensibility/custom-metrics",
       ],
     },
     "contributing",
