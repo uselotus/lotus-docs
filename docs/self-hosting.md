@@ -5,7 +5,7 @@ title: Self-Hosting
 
 # :bust_in_silhouette: Self-Hosting
 
-There are a few options for self-hosting including a hobby instance, and one click deploy on Heroku.
+Best if you want to keep your data local or want full control and extensibility.
 
 ### :computer: Local Hobby Instance
 
@@ -22,15 +22,7 @@ There are a few options for self-hosting including a hobby instance, and one cli
    ```
 You should now be able to access the homepage at [localhost/](http://localhost/), and sign in using the `ADMIN_USERNAME` and `ADMIN_PASSWORD` you defined.
 
-### :pisces: One-click Deploy with Heroku
-
-Use the button in our [repo](https://github.com/uselotus/lotus) to start a deployment on Heroku.
-
-To get this running properly, you will need to make a couple of modifications to
-the project. Navigate to the resources dashboard for your project (`https://dashboard.heroku.com/apps/<your-app-name>/resources`) and do the following:
-1. Edit the `web`, `worker`, and `beat` dynos to have at least 1 dyno each.
-2. Update the `Heroku Data for Redis` add-on to be at at least the lowest paid tier. The free tier is not compatible with Lotus.
-3. Optionally, re-provision the `Heroku Postgres` add-on to be at at least the lowest paid tier. The free tier has only 10,000 rows, which is not enough for most Lotus use-cases.
+We are currently working on easy deployment options for AWS, GCP, and Azure. If you have any questions, feel free to reach out to us.
 
 ### Local Hobby Env variables
 
@@ -51,7 +43,7 @@ the project. Navigate to the resources dashboard for your project (`https://dash
     <td>&#10004;</td>
   </tr>
   <tr>
-    <td>POSTGRES_NAME</td>
+    <td>POSTGRES_DB_NAME</td>
     <td>lotus</td>
     <td>&#10004;</td>
   </tr>
@@ -76,8 +68,8 @@ the project. Navigate to the resources dashboard for your project (`https://dash
     <td>&#10004;</td>
   </tr>
   <tr>
-    <td>DOCKERIZED</td>
-    <td>True</td>
+    <td>DJANGO_SETTINGS_MODULE</td>
+    <td>"lotus.settings"</td>
     <td></td>
   </tr>
   <tr>
@@ -86,12 +78,32 @@ the project. Navigate to the resources dashboard for your project (`https://dash
     <td>&#10004;</td>
   </tr>
   <tr>
+    <td>DOCKERIZED</td>
+    <td>True</td>
+    <td></td>
+  </tr>
+  <tr>
     <td>DEBUG</td>
     <td>False</td>
     <td></td>
   </tr>
   <tr>
     <td>SELF_HOSTED</td>
+    <td>True</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>NODE_ENV</td>
+    <td>production</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>VITE_API_URL</td>
+    <td>"http://localhost/"</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>PRODUCT_ANALYTICS_OPT_IN</td>
     <td>True</td>
     <td></td>
   </tr>
