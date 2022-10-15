@@ -64,7 +64,7 @@ If you make any changes to the backend settings, you might need to restart the D
     <td>&#10004;</td>
   </tr>
   <tr>
-    <td>POSTGRES_NAME</td>
+    <td>POSTGRES_DB_NAME</td>
     <td>lotus</td>
     <td>&#10004;</td>
   </tr>
@@ -89,14 +89,19 @@ If you make any changes to the backend settings, you might need to restart the D
     <td>&#10004;</td>
   </tr>
   <tr>
-    <td>DOCKERIZED</td>
-    <td>True</td>
+    <td>DJANGO_SETTINGS_MODULE</td>
+    <td>"lotus.settings"</td>
     <td></td>
   </tr>
   <tr>
     <td>STRIPE_SECRET_KEY</td>
     <td>change_me</td>
     <td>&#10004;</td>
+  </tr>
+  <tr>
+    <td>DOCKERIZED</td>
+    <td>True</td>
+    <td></td>
   </tr>
   <tr>
     <td>DEBUG</td>
@@ -106,6 +111,16 @@ If you make any changes to the backend settings, you might need to restart the D
   <tr>
     <td>SELF_HOSTED</td>
     <td>True</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>NODE_ENV</td>
+    <td>development</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>VITE_API_URL</td>
+    <td>"http://localhost:8000/"</td>
     <td></td>
   </tr>
 </table>
