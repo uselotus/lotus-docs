@@ -30,7 +30,7 @@ To debug, you can set debug mode.
 lotus.debug = True
 ```
 
-## Making calls
+## Event Tracking
 
 ### Track Event
 
@@ -47,8 +47,6 @@ Optionally you can submit
 - `properties`, which can be a dict with any information you'd like to add. In your metrics you can define properties to filer or aggregate over.
 - `idempotency_id` is a unique identifier for the specific event being passed in. Passing in a unique id allows Lotus to make sure no double counting occurs. If you don't pass in an idempotency_id, we will generate one for you using UUID4.
 
-For example:
-
 ```python
 lotus.track_event(
   customer_id='customer123',
@@ -61,18 +59,36 @@ lotus.track_event(
 )
 ```
 
-### Get Customers
+## Customer Management
 
-To get the customers associated with the organization to which the API key belongs to, use the `get_customers` call. This call returns a list of customers, each with the following fields:
+### Get All Customers
+
+To get all the customers associated with your organization, use the `get_all_customers` call. This call returns a list of customers, each with the following fields:
 
 - `customer_id`
 - `customer_name`
 - `balance`, the number of dollars of credit the user has.
 
-For example:
+```python
+lotus.get_all_customers()
+```
+
+### Get Customer Detail
+
+The `get_customer_detail` call returns the details of a specific customer. This call returns a customer object with the following fields:
+
+- `customer_id`
+- `customer_name`
+- `total_revenue_due`, the total amount of revenue due for the customer
+- `email`
+- `balance`, the number of dollars of credit the user has.
+- `invoices`, a list of invoice objects associated with the customer.
+- `subscriptions`, a list of subscription objects associated with the customer.
 
 ```python
-lotus.get_customers()
+lotus.get_customer_detail(
+  customer_id='cust_0569173e-e665-4369'
+)
 ```
 
 ### Create Customer
@@ -86,23 +102,19 @@ A `create_customer` call requires
 
 Optionally you can submit
 
-- `currency` what currency your customer is billed in. If you don't pass in a currency, we will default to USD.
-- `payment_provider_id` if you are using Stripe, you can pass in the payment provider id to associate the customer with a payment method. This will allow you to charge the customer later on. If you don't pass in a payment provider id, we can still connect a customer to Stripe, but it requires
-  the `name` on Lotus to match the `name` on Stripe.
-
-For example:
+- `balance` the number of dollars of credit the user has. Can be useful in case you want to give your customers a certain amount of spend for free.
 
 ```python
 lotus.create_customer(
-    customer_id='customer_id',
+    customer_id='cust_0569173e-e665-4369',
     name='Corporation Inc.',
-    currency='USD'
+    balance=500
 )
 ```
 
 The most obvious place to make this call is whenever a user signs up, or when they update their information.
 
-### Get Current Usage
+<!-- ### Get Current Usage
 
 To get a snapshot of the customer's usage for currently active subscriptions, use the `get_current_usage` call. This call returns a list of subscriptions, each with the following fields:
 
@@ -125,26 +137,26 @@ For example:
 lotus.get_current_usage(
     customer_id='customer_id',
 )
+``` -->
+
+## Subscription + Plan Management
+
+### Get All Subscriptions
+
+To get all the active subscriptions associated with your organization, use the `get_all_subscriptions` call. This call returns a list of subscription objects.
+
+```python
+lotus.get_all_subscriptions()
 ```
 
 ### Get Plans
 
-To get the current billing plans associated with the organization to which the API key belongs to, use the `get_plans` call. This call returns a list of plans objects.
+To get the current plans associated with your organization, use the `get_all_plans` call. This call returns a list of plan objects.
 
 For example:
 
 ```python
-lotus.get_plans()
-```
-
-### Get Subscriptions
-
-To get the current subscriptions associated with the organization to which the API key belongs to, use the `get_subscriptions` call. This call returns a list of subscription objects.
-
-For example:
-
-```python
-lotus.get_subscriptions()
+lotus.get_all_plans()
 ```
 
 ### Create Subscription
@@ -154,44 +166,83 @@ A subscription associates one of your customers with one of your billing plans.
 A `create_subscription` call requires
 
 - `customer_id` which uniquely identifies your customer in your backend. This is the same id you'll pass into `track_event` calls to identify the customer, in addition to other calls, so make sure it's available to you.
-- `billing_plan_id` which uniquely identifies your billing plan in your backend. You can find the billing plan id in the billing plan page in Lotus.
-- `start_date` the date the subscription starts. This should be a date string in YYYY-MM-DD format in UTC time.
+- `plan_id` which uniquely identifies your plan in your backend. You can find the plan id in the plan page in Lotus.
+- `start_date` the date the subscription starts. This should be a string in YYYY-MM-DD format of the date in UTC time.
 
 Optionally you can submit:
 
-- `end_date` the date the subscription ends. This should be a datetime string in UTC. If you don't set it (recommended), we will
-  use the information in the billing plan to automatically calculate this.
-- `subscription_id` a unique identifier for the subscription. If you don't pass in a subscription_id, we will generate one for you using UUID4.
-  You will need the subscription_id to update or cancel the subscription. You can eeither store it yourself or look for it in the subscriptions page in the Lotus app.
+- `end_date` the date the subscription ends. This should be a string in YYYY-MM-DD format of the date in UTC time. If you don't set it (recommended), we will use the information in the billing plan to automatically calculate this.
+- `subscription_id` a unique identifier for the subscription. If you don't pass in a subscription_id, we will generate one for you. You will need the subscription_id to update or cancel the subscription. You can either store it yourself or look for it in the subscriptions page in the Lotus app.
+- `is_new` a boolean indicating whether this is a new subscription or an existing subscription that you're updating/renewing. If you don't pass in this field, we will assume it's a new subscription.
+- `auto-renew` a boolean indicating whether the subscription should auto-renew. If you don't pass in this field, we will assume it's true.
 
 For example:
 
 ```python
 lotus.create_subscription(
-  customer_id='customer_1',
-  billing_plan_id='billing_plan_5',
+  customer_id='cust_0569173e-e665-4369',
+  plan_id='premium_plan_7ui9op',
   start_date='2020-01-01',
-  subscription_id='cust1_bp_5_2020-01-01'
+  subscription_id='cust_0569_p_7ui9op_2020-01-01'
 )
 ```
 
 ### Cancel Subscription
 
-Cancels a subscription. You can optionally decide whether to bill for the usage so far that period or not.
+Cancels a subscription. You can modify the behavior of the cancellation based on teh arguments passed to the call.
 
 A `cancel_subscription` call requires
 
 - `subscription_id` the unique ID of the subscription you want to cancel. You can find the subscription uid in the subscription page in Lotus.
-- `bill_now` whether to bill for the usage so far that period or not. If you don't pass in a value, we will default to `True`.
+
+Additionally, you must submit:
+
+- `turn_off_auto_renew` a boolean indicating whether the subscription auto-renewal should be turned off. A common cancellation mechanism is to continue billing for the current period, but not renew the subscription.
+
+OR
+
+- `replace_immediately_type` in case you want the subscription cancelled immediately. This can take on a value of `end_current_subscription_and_bill` or `end_current_subscription_and_dont_bill`. The former will end the subscription immediately and bill the customer for the current period. The latter will end the subscription immediately and not bill the customer for the current period.
 
 For example:
 
 ```python
 lotus.cancel_subscription(
   subscription_id='subscription_4',
-  bill_now='True'
+  turn_off_auto_renew=True
+)
+
+lotus.cancel_subscription(
+  subscription_id='subscription_4',
+  replace_immediately_type='end_current_subscription_and_bill'
 )
 ```
+
+### Get Subscription Detail
+
+The `get_subscription_detail` call returns the details of a specific subscription. This call returns a subscription object.
+
+```python
+lotus.get_customer_detail(
+  subscription_id='cust_0569173e-e665-4369'
+)
+```
+
+### Change Subscription Plan
+
+The `change_subscription_plan` call allows you to change the plan associated with a subscription. This often happens when a custoemr upgrades or downgradestheir plan. A `change_subscription_plan` call requires:
+
+- `subscription_id` the unique ID of the subscription you want to change. You can find the subscription id in the subscription page in Lotus.
+- `plan_id` the unique ID of the plan you want to change to. You can find the plan id in the plan page in Lotus.
+- `replace_immediately_type` which specifies the behavior of the change. This can take on a value of `end_current_subscription_and_bill`, `end_current_subscription_and_dont_bill`, or `change_subscription_plan`. The first two options will acvtually end the subscvription and start a new one with the new plan, whereas the third option will actually mnake a mid-subscription switch.
+
+```python
+lotus.change_subscription_plan(
+  subscription_id='subscription_4',
+  replace_immediately_type='change_subscription_plan',
+)
+```
+
+## Usage Management
 
 ### Get Customer Access
 
