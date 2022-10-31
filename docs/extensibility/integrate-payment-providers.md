@@ -19,10 +19,10 @@ The places where payment providers are used in the Lotus workflow are:
 ### Creating your own payment provider
 
 To create your own integration, you have to do the following:
-1. Create a concrete class that implements the `PaymentProvider` interface. This interface is defined in [`metering_billing/payment_providers.py`](https://github.com/uselotus/lotus/blob/main/metering_billing/payment_providers.py)). You can see the implementation of the Stripe version (`StripeConnector` class) in the file. The type hints should be relatively self-explanatory, but if you have any doubts, don't be afraid to reach out in the [Lotus Community Slack](https://lotus-community.slack.com).
-2. Add your payment provider to the [Payment Providers enum](https://github.com/uselotus/lotus/blob/80894dfa73796e8e29622f66047692c457bff1f9/metering_billing/utils.py#L53) and the [Supported Payment Providers choice set](https://github.com/uselotus/lotus/blob/80894dfa73796e8e29622f66047692c457bff1f9/metering_billing/utils.py#L57). This will allow it to be a field in the models and be used throughout Lotus. 
-3. Go to the URLs in `lotus/urls.py` and add your new payment provider as an endpoint. The get and post methods from step 1 will take care of interfacing with the frontend. You can see [here how we implemented this with Stripe](https://github.com/uselotus/lotus/blob/80894dfa73796e8e29622f66047692c457bff1f9/lotus/urls.py#L124). 
-4. To make our connector implement the second functionality mentioned in the last section, go to the `metering_billing/invoice.py` file, and add an instance of your connector to the `payment_providers` dictionary. From here, the boilerplate will take care of using the methods you defined to execute Lotus' billing logic. To see how we did it with Stripe, [check out this line](https://github.com/uselotus/lotus/blob/80894dfa73796e8e29622f66047692c457bff1f9/metering_billing/invoice.py#L24).
+
+1. Create a concrete class that implements the `PaymentProvider` interface. This interface is defined in [`metering_billing/payment_providers.py`](https://github.com/uselotus/lotus/blob/027f9c456093b53b8d331f8c0cf6df2e6a96a58c/backend/metering_billing/payment_providers.py#L1)). You can see the implementation of the Stripe version (`StripeConnector` class) in the file. The type hints should be relatively self-explanatory, but if you have any doubts, don't be afraid to reach out in the [Lotus Community Slack](https://lotus-community.slack.com).
+2. Add your payment provider to the [Payment Providers enum](https://github.com/uselotus/lotus/blob/027f9c456093b53b8d331f8c0cf6df2e6a96a58c/backend/metering_billing/utils.py#L35). This will allow it to be a field in the models and be used throughout Lotus.
+3. To let the Lotus app acess the functionality provided by your implementation, go to the `metering_billing/invoice.py` file, and add an instance of your connector to the `PAYMENT_PROVIDER_MAP` dictionary. From here, the boilerplate will take care of using the methods you defined to execute Lotus' billing logic. To see how we did it with Stripe, [check out this line](https://github.com/uselotus/lotus/blob/027f9c456093b53b8d331f8c0cf6df2e6a96a58c/backend/metering_billing/payment_providers.py#L249).
 
 ## Frontend
 
@@ -30,5 +30,6 @@ You might want to integrate your payment provider in the frontend to allow for g
 
 This frontend display is much more open-ended than the backend integration but we still have a few steps that can get you started:
 
-1. Add the api requests you need for the frontend in the [integrations folder](https://github.com/uselotus/lotus/blob/main/src/integrations/api.ts)
-2. Next create any extra logic/functions you need in a file within the integrations folder. Take a look a the Stripe file to see an example of necessary functions.
+1. In the `frontend/src/types/payment-processor-type.ts` file, create a new interface for the data sent in a request to Lotus' backend, and add it as an option for the `data` parameter in the `PaymentProcessorConnectionRequestType` interface. You can see that for the Stripe integration, the only data we needed was the authorization code provided by the Oauth integration.
+2. In the `frontend/src/integrations/PaymentProcessorIntegrations.tsx` file, create a new functional component that describes what should happen once we get redirected from the authorization page for your payment processor. We have an exampel for hwo we did it for Stripe in the file.
+3. In the `frontend/src/config/Routes.tsx` file, add a new route for your payment processor. You can see how we did it for Stripe in the file.
