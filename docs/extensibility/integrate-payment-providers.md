@@ -31,5 +31,5 @@ You might want to integrate your payment provider in the frontend to allow for g
 This frontend display is much more open-ended than the backend integration but we still have a few steps that can get you started:
 
 1. In the `frontend/src/types/payment-processor-type.ts` file, create a new interface for the data sent in a request to Lotus' backend, and add it as an option for the `data` parameter in the `PaymentProcessorConnectionRequestType` interface. You can see that for the Stripe integration, the only data we needed was the authorization code provided by the Oauth integration.
-2. In the `frontend/src/integrations/PaymentProcessorIntegrations.tsx` file, create a new functional component that describes what should happen once we get redirected from the authorization page for your payment processor. We have an exampel for hwo we did it for Stripe in the file.
+2. In the `frontend/src/integrations/PaymentProcessorIntegrations.tsx` file, create a new functional component that describes what should happen once we get redirected from the authorization page for your payment processor. We have an example for how we did it for Stripe in the file.
 3. In the `frontend/src/config/Routes.tsx` file, add a new route for your payment processor. You can see how we did it for Stripe in the file.
