@@ -10,7 +10,7 @@ Lotus provides a flexible and modular control panel on top of your existing quot
 
 Lotus is self-hostable and extensible, enabling companies to build their own frontend, apps, and integrations for themselves.
 
-![Example banner](./assets/lotus.gif)
+![Cool graphic](./assets/lotus.gif)
 
 <!-- ## How It Works
 

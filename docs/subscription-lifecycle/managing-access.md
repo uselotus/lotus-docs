@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Entitelments and Feature Access
+title: Entitlements and Feature Access
 ---
 
 # Managing Feature Accesss

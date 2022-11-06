@@ -1,110 +1,11 @@
----
-sidebar_position: 1
-title: Self-Hosting
----
+# Stripe
 
-# :bust_in_silhouette: Self-Hosting
+Most early stage startups use Stripe to manage their payments. Lotus lets you keep the most convenient part of Stripe (processing payments), while also letting you seamlessly transition off the products that are incurring costs you don't even think about. You could be paying anywhere from 0.9% to 1.3% of your revenue to Stripe by using their [Billing](https://stripe.com/billing/pricing) and [Invoicing](https://stripe.com/invoicing/pricing) services, on top of the 2.9% + 30¢ fee they charge for every transaction. With Lotus, you can pick and choose which parts of Stripe you want to keep, and which parts you want to replace with a more cost effective solution.
 
-Best if you want to keep your data local or want full control and extensibility.
+The Stripe integration currently supports:
 
-### :computer: Local Hobby Instance
+- Importing your customers from Stripe. Customers are matched by email address, so make sure your Stripe customers have email addresses.
 
-1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-2. Clone the repo and navigate to the project
-   ```sh
-   git clone https://github.com/uselotus/lotus.git && cd lotus
-   ```
-3. Change the environemnt variables located in `env/.env.prod.example` to suit your needs. If you need help you can check out the example environment variables at the bottom of this page. 
-4. Rename `env/.env.prod.example` to `env/.env.prod`. Make sure you don't commit your secret environment variables anywhere!
-5. Build and run the Docker Image!
-   ```sh
-   docker-compose -f docker-compose.prod.yaml up --build
-   ```
-You should now be able to access the homepage at [localhost/](http://localhost/), and sign in using the `ADMIN_USERNAME` and `ADMIN_PASSWORD` you defined.
+- Importing your invoices from Stripe. If you want to see how much customers have paid right on the Lotus app, this could be a great option for you.
 
-We are currently working on easy deployment options for AWS, GCP, and Azure. If you have any questions, feel free to reach out to us.
-
-### Local Hobby Env variables
-
-<table>
-  <tr>
-    <th>Variable Name</th>
-    <th>(Default) Value</th>
-    <th>Change?</th>
-  </tr>
-  <tr>
-    <td>SECRET_KEY</td>
-    <td>change_me</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>POSTGRES_USER</td>
-    <td>lotus</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>POSTGRES_DB_NAME</td>
-    <td>lotus</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>POSTGRES_PASSWORD</td>
-    <td>lotus</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>ADMIN_PASSWORD</td>
-    <td>insecure_password</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>ADMIN_EMAIL</td>
-    <td>example@example.com</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>ADMIN_USERNAME</td>
-    <td>admin</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>DJANGO_SETTINGS_MODULE</td>
-    <td>"lotus.settings"</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>STRIPE_SECRET_KEY</td>
-    <td>change_me</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>DOCKERIZED</td>
-    <td>True</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>DEBUG</td>
-    <td>False</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>SELF_HOSTED</td>
-    <td>True</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>NODE_ENV</td>
-    <td>production</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>VITE_API_URL</td>
-    <td>"http://localhost/"</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>PRODUCT_ANALYTICS_OPT_IN</td>
-    <td>True</td>
-    <td></td>
-  </tr>
-</table>
+- Transferring subscriptions from Stripe to Lotus. We allow you to both transfer them immediately by cancelling the Stripe subscription, or to switch over to Lotus at the end of the billing period. We do this automatically by looking at your Stripe product IDs and price IDs and matching them to the Lotus plans you have created. For more details, see the [plan information](../plan-management/creating-plans.md#plan-information) section of the Creating a Plan guide.

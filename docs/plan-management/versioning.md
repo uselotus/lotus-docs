@@ -1,110 +1,15 @@
----
-sidebar_position: 1
-title: Self-Hosting
----
+# Plan Versioning
 
-# :bust_in_silhouette: Self-Hosting
+Pricing is one of the most important levers for growth, and it's important to be able to iterate on your pricing and packaging strategy smoothly and with minimal engineering headaches. Using Lotus' plan versioning feature, you can easily create new versions of your plans, and control the behavior of users who are on older versions of your plans.
 
-Best if you want to keep your data local or want full control and extensibility.
+Our versioning system works by having all versions of a plan be either `active` (displayed by default when you list all plans, used to sign up a customer if you only specify a plan id and not a specific version), `grandfatehred` (no longer displayed by default, but still available to customers who are already on that plan), and `inactive`/`archived` (no active subscriptions, the only difference is archived won't show up in the versions screen in order to reduce clutter).
 
-### :computer: Local Hobby Instance
+Currently we support:
 
-1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-2. Clone the repo and navigate to the project
-   ```sh
-   git clone https://github.com/uselotus/lotus.git && cd lotus
-   ```
-3. Change the environemnt variables located in `env/.env.prod.example` to suit your needs. If you need help you can check out the example environment variables at the bottom of this page. 
-4. Rename `env/.env.prod.example` to `env/.env.prod`. Make sure you don't commit your secret environment variables anywhere!
-5. Build and run the Docker Image!
-   ```sh
-   docker-compose -f docker-compose.prod.yaml up --build
-   ```
-You should now be able to access the homepage at [localhost/](http://localhost/), and sign in using the `ADMIN_USERNAME` and `ADMIN_PASSWORD` you defined.
+- Transferring all users currently on a plan to the newest version at renew time, or immediately
 
-We are currently working on easy deployment options for AWS, GCP, and Azure. If you have any questions, feel free to reach out to us.
+- Marking the currently actrive version as "grandfathered" before replacing it with a new active version, menaing that users on that version will not be automatically transferred to any new version until you specify otherwise
 
-### Local Hobby Env variables
+- Creating plan versions as inactive, giving you the flexibility to [run backtests](../experimentation/backtests) or do other necessary testing before making a plan version active
 
-<table>
-  <tr>
-    <th>Variable Name</th>
-    <th>(Default) Value</th>
-    <th>Change?</th>
-  </tr>
-  <tr>
-    <td>SECRET_KEY</td>
-    <td>change_me</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>POSTGRES_USER</td>
-    <td>lotus</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>POSTGRES_DB_NAME</td>
-    <td>lotus</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>POSTGRES_PASSWORD</td>
-    <td>lotus</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>ADMIN_PASSWORD</td>
-    <td>insecure_password</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>ADMIN_EMAIL</td>
-    <td>example@example.com</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>ADMIN_USERNAME</td>
-    <td>admin</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>DJANGO_SETTINGS_MODULE</td>
-    <td>"lotus.settings"</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>STRIPE_SECRET_KEY</td>
-    <td>change_me</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>DOCKERIZED</td>
-    <td>True</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>DEBUG</td>
-    <td>False</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>SELF_HOSTED</td>
-    <td>True</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>NODE_ENV</td>
-    <td>production</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>VITE_API_URL</td>
-    <td>"http://localhost/"</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>PRODUCT_ANALYTICS_OPT_IN</td>
-    <td>True</td>
-    <td></td>
-  </tr>
-</table>
+![Plan Versioning](./assets/plan_versioning.png)
