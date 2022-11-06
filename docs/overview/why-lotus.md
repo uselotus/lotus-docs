@@ -36,7 +36,7 @@ Lotus provides a powerful dashboard that allows you to monitor your customers an
 
 - Completely customize when, where, and how you [create your customers' subscriptions](../subscription-lifecycle/creating-subscriptions)
 - [Manage customer access to your products](../subscription-lifecycle/managing-access). Forget about keeping track of which customer is allowed to do what, how much of their allowed usage has been consumed, and when they need to upgrade. With Lotus, you can manage all of this in one place.
-- Stop overpaying for subscription management. With Lotus, you can [integrate with your existing payment processor](../integrations/payment-processors) to [save money on invoicing and billing](../subscription-lifecycle/invoicing).
+- Stop overpaying for subscription management. With Lotus, you can [integrate with your existing payment processor](../external-integrations/stripe.md) to [save money on invoicing and billing](../subscription-lifecycle/invoicing).
 
 ### 📊 Iterate on Your Monetization
 

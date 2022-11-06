@@ -1,14 +1,10 @@
----
-sidebar_position: 1
----
-
 import ApiDocMdx from "@theme/ApiDocMdx";
 
 # API Reference
 
 ## Getting Started
 
-You can access Lotus's API directly or through the [SDKs](./api/node-guide) we have built. We highly recommend using the SDKs as they provide a more user-friendly interface to the API and some of the endpoints are overloaded to provide a flexible functionality.
+You can access Lotus's API directly or through the [SDKs](./node-guide) we have built. We highly recommend using the SDKs as they provide a more user-friendly interface to the API and some of the endpoints are overloaded to provide a flexible functionality.
 
 ### How to use your API key
 
