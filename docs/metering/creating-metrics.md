@@ -54,18 +54,18 @@ Defining a stateful metric also starts with defining the <code>event_name</code>
 
 In an event based on a stateful metric, you will be passing back the state of usage in the properties. Therefore a property field is required.
 
-Currently we only provide one, default aggregation type: <code>MAX</code>.
+Currently, we provide two types with the default aggregation type: <code>MAX</code>.
 
 - <code>MAX</code> <b>:property field required </b>
 
   - Take the max of the state property over the specified period of time.
 
-- <code>LAST: NOT YET SUPPORTED</code> <b>:property field required </b>
+- <code>LAST</code> <b>:property field required </b>
 
   - Take the last value of the state property over the specified period of time.
 
 Then, to define the period of time in which we aggregate the state, choose an interval.
 
-Lastly, also give this metric a unique display name.
+Lastly, also give this metric a unique display name that can then be referenced in the frontend when creating plans or analyzing usage. This can be the same as the event name.
 
 </p>

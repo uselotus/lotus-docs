@@ -43,5 +43,5 @@ Lotus provides a powerful dashboard that allows you to monitor your customers an
 Charging your customers shouldn't be the end of the story. Pricing and packaging are a continuous process of experimentation and iteration, and one of the biggest levers for growth. Lotus provides a host of tools that take the guesswork out of pricing, including:
 
 - [Backtests](../experimentation/backtests) to help you model what-if scenarios and discover new pricing vectors.
-- [Forecasts](../experimentation/forecasts) to give you a picture of your financial health, project how your business will grow, and help you make better decisions about how you serve your customers.
-- [Deployment Tests](../experimentation/deployment-tests) to help you understand the impact of your pricing changes on your customers and your bottom line.
+- Forecasts (Coming Soon) to give you a picture of your financial health, project how your business will grow, and help you make better decisions about how you serve your customers.
+- Deployment Tests (Coming Soon) to help you understand the impact of your pricing changes on your customers and your bottom line.

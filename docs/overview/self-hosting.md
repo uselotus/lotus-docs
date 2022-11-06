@@ -14,13 +14,13 @@ Best if you want to keep your data local or want full control and extensibility.
    ```sh
    git clone https://github.com/uselotus/lotus.git && cd lotus
    ```
-3. Change the environemnt variables located in `env/.env.prod.example` to suit your needs. If you need help you can check out the example environment variables at the bottom of this page. 
+3. Change the environemnt variables located in `env/.env.prod.example` to suit your needs. If you need help you can check out the example environment variables at the bottom of this page.
 4. Rename `env/.env.prod.example` to `env/.env.prod`. Make sure you don't commit your secret environment variables anywhere!
 5. Build and run the Docker Image!
    ```sh
    docker-compose -f docker-compose.prod.yaml up --build
    ```
-You should now be able to access the homepage at [localhost/](http://localhost/), and sign in using the `ADMIN_USERNAME` and `ADMIN_PASSWORD` you defined.
+   You should now be able to access the homepage at [localhost/](http://localhost/), and sign in using the `ADMIN_USERNAME` and `ADMIN_PASSWORD` you defined.
 
 We are currently working on easy deployment options for AWS, GCP, and Azure. If you have any questions, feel free to reach out to us.
 
@@ -105,6 +105,11 @@ We are currently working on easy deployment options for AWS, GCP, and Azure. If 
   <tr>
     <td>PRODUCT_ANALYTICS_OPT_IN</td>
     <td>True</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>VITE_IS_DEMO</td>
+    <td>false</td>
     <td></td>
   </tr>
 </table>
