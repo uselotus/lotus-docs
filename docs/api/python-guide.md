@@ -21,7 +21,7 @@ Make sure to import the lotus library and set your api key **before** making any
 ```python
 import lotus
 lotus.api_key = 'YOUR API KEY'
-lotus.host = 'https://your-lotus-instance.com'
+lotus.host = 'https://api.uselotus.io/'
 ```
 
 To debug, you can set debug mode.

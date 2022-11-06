@@ -1,0 +1,53 @@
+import ApiDocMdx from "@theme/ApiDocMdx";
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useSpecData from '@theme/useSpecData';
+
+# Cancel a subscription
+
+Cancels a subscription. You can modify the behavior of the cancellation based on the arguments passed to the call.
+
+A `Cancel Subscription` call requires
+
+- `subscription_id` the unique ID of the subscription you want to cancel. You can find the subscription uid in the subscription page in Lotus.
+
+Additionally, you must submit:
+
+- `turn_off_auto_renew` a boolean indicating whether the subscription auto-renewal should be turned off. A common cancellation mechanism is to continue billing for the current period, but not renew the subscription.
+
+OR
+
+- `replace_immediately_type` in case you want the subscription cancelled immediately. This can take on a value of `end_current_subscription_and_bill` or `end_current_subscription_and_dont_bill`. The former will end the subscription immediately and bill the customer for the current period. The latter will end the subscription immediately and not bill the customer for the current period.
+
+<Tabs>
+<TabItem value="js" label="JavaScript">
+
+```jsx
+lotus.cancelSubscription({
+  subscription_id: "subscription_123",
+  turn_off_auto_renew: true,
+});
+
+lotus.cancelSubscription({
+  subscription_id: "subscription_123",
+  replace_immediately_type: "end_current_subscription_and_bill",
+});
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+lotus.cancel_subscription(
+  subscription_id='subscription_4',
+  turn_off_auto_renew=True
+)
+
+lotus.cancel_subscription(
+  subscription_id='subscription_4',
+  replace_immediately_type='end_current_subscription_and_bill'
+)
+```
+
+</TabItem>
+</Tabs>

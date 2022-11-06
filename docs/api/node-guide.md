@@ -18,7 +18,7 @@ First grab a new api key from the Settings tab. Then change the host to wherever
 
 ```jsx
 const lotus = new Lotus(api_key, {
-  host: "https://www.uselotus.app/", // You can omit this line if using Lotus Cloud
+  host: "https://api.uselotus.io/", // You can omit this line if using Lotus Cloud
 });
 ```
 

@@ -84,7 +84,7 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "intro",
+            docId: "overview/why-lotus",
             position: "left",
             label: "Documentation",
           },
