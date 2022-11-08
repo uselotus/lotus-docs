@@ -21,7 +21,7 @@ Optionally you can submit:
 - `auto-renew` a boolean indicating whether the subscription should auto-renew. If you don't pass in this field, we will assume it's true.
 
 <Tabs>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="Node">
 
 ```jsx
 lotus.createSubscription({
@@ -41,6 +41,17 @@ lotus.create_subscription(
   start_date='2020-01-01',
   subscription_id='cust_0569_p_7ui9op_2020-01-01'
 )
+```
+
+</TabItem>
+<TabItem value="ts" label="Typescript">
+
+```jsx
+lotus.createSubscription({
+  customerId: "customer_123",
+  planId: "billing_plan_5",
+  startDate: "2022-02-23",
+});
 ```
 
 </TabItem>
