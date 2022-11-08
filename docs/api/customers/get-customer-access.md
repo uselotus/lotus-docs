@@ -23,13 +23,13 @@ OR
 - `event_limit_type` the type of limit you want to check. Pass in `free` to check if the customer has access to free units, or `total` to see if the customer has access to the event_name at all.
 
 <Tabs>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="Node">
 
 ```jsx
 lotus.checkCustomerAccess(
   customer_id: "cust_0569173e-e665-4369",
   event_name: 'api_call',
-  event_limit_type: 'free'
+  event_limit_type: 'free',
 )
 
 lotus.checkCustomerAccess(
@@ -52,6 +52,22 @@ lotus.check_customer_access(
   customer_id= "cust_0569173e-e665-4369",
   feature_name='slack_integration',
 )
+```
+
+</TabItem>
+<TabItem value="ts" label="Typescript">
+
+```jsx
+lotus.getCustomerAccess({
+    customerId: "cust_0569173e-e665-4369",
+    eventName: 'api_call',
+    eventLimitType: 'free',
+})
+
+lotus.getCustomerAccess({
+    customerId: "cust_0569173e-e665-4369",
+    featureName:'slack_integration',
+})
 ```
 
 </TabItem>
