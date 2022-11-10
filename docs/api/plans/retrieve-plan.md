@@ -12,7 +12,7 @@ A `Retrieve Plan` call requires
 - `plan_id` the plan id
 
 <Tabs>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="Node">
 
 ```jsx
 lotus.retrievePlan({
@@ -27,6 +27,16 @@ lotus.retrievePlan({
 lotus.retrieve_plan(
     plan_id='plan_0569173e-e665-4369',
 )
+```
+
+</TabItem>
+
+<TabItem value="ts" label="Typescript">
+
+```jsx
+lotus.retrievePlan({
+  planId: "plan_0569173e-e665-4369", // required
+}); // Will return a promise
 ```
 
 </TabItem>

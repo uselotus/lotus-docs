@@ -15,7 +15,7 @@ A `Create Customer` call requires
 - `balance` the number of dollars of credit the user has. Can be useful in case you want to give your customers a certain amount of spend for free. -->
 
 <Tabs>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="Node">
 
 ```jsx
 lotus.createCustomer({
@@ -32,6 +32,16 @@ lotus.create_customer(
     customer_id='cust_0569173e-e665-4369',
     name='Corporation Inc.',
 )
+```
+
+</TabItem>
+<TabItem value="ts" label="Typescript">
+
+```jsx
+lotus.createCustomer({
+  customerId: "123",
+  customerName: "Test Customer",
+});
 ```
 
 </TabItem>
