@@ -18,15 +18,14 @@ First grab a new api key from the Settings tab. Then change the host to wherever
 
 Make sure to import the lotus library and set your api key **before** making any calls.
 
-` ```python
+```python
 import lotus
 lotus.api_key = 'YOUR API KEY'
 lotus.host = 'https://api.uselotus.io/'
-
-````
+```
 
 To debug, you can set debug mode.
 
 ```python
 lotus.debug = True
-````
+```
