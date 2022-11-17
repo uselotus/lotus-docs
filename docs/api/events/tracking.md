@@ -47,12 +47,11 @@ lotus.track_event(
       'region': 'US',
       'mb_used': 150
     }
-  idemptotency_id='c9799bf9-e5c9-4007-8d10-0663d045d23c'
+  idempotency_id='c9799bf9-e5c9-4007-8d10-0663d045d23c'
 )
 ```
 
 </TabItem>
-
 
 <TabItem value="ts" label="Typescript">
 
