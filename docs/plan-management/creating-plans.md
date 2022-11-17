@@ -14,7 +14,7 @@ It might look like a lot, but let's break it down!
 
 ![Plan Information Section](./assets/plan_info.png)
 
-This section has metadata about your plan, including it's name and description, billing frequency information, and the flat subscription fee any customers on this plan will pay per billing period. One of Lotus' core concepts is [plan versioning](./versioning.md), so keep in mind that when you make new versions of the same plan, the only two things you can't change are the plan name and the plan duration. Everything else is fair game!
+This section has metadata about your plan, including its name and description, billing frequency information, and the flat subscription fee any customers on this plan will pay per billing period. One of Lotus' core concepts is [plan versioning](./versioning.md), so keep in mind that when you make new versions of the same plan, the only two things you can't change are the plan name and the plan duration. Everything else is fair game!
 
 Additionally, we know that you might have existing subscriptions associated with a payment provider (such as [Stripe](../external-integrations/stripe.md)), so we allow you to link this plan to any ID that represents a plan in your payment provider. This is useful when you want to migrate your existing subscriptions to Lotus.
 
@@ -26,9 +26,9 @@ For example, in Stripe, [Prices](https://stripe.com/docs/api/prices) and [Produc
 
 Plan components associate metrics to your given plan, and include the price you want to charge for them.
 
-Charges are configured through tiers. This format can represent per unit pricing, packaged pricing, traditional tiered pricing, stair-step pricing, or free pricing.
+Charges are configured through tiers. This format can represent per-unit pricing, packaged pricing, traditional tiered pricing, stair-step pricing, or free pricing.
 
-In addition since you can set ranges, you can also dictate whether the metric has a limit that the user cannot exceed, which can then be checked in your [frontend](../subscription-lifecycle/managing-access.md)
+In addition, since you can set ranges, you can also dictate whether the metric has a limit that the user cannot exceed, which can then be checked in your [frontend](../subscription-lifecycle/managing-access.md)
 
 Each tier can have a different type:
 
@@ -38,9 +38,9 @@ Each tier can have a different type:
 
 ### Tier Ranges
 
-For metrics that are continuous, tier ranges are defined as [start_1,end_1), (start_2, end_2], where the end is not inclusive.
+For continuous metrics, tier ranges are defined as [start_1,end_1), (start_2, end_2], where the end is not inclusive.
 
-For discrete metics (that follow integers i.e the Count aggregation type), tier ranges can be at most 1 integer apart from each other. An example of this would be a tier that holds the range 0 -> 3 which will include 0, 1, 2, and 3. Then the next range can be 4 -> 100 which will start at 4 and go to 100.
+For discrete metrics (that follow integers i.e the Count aggregation type), tier ranges can be at most 1 integer apart from each other. An example of this would be a tier that holds the range 0 -> 3 which will include 0, 1, 2, and 3. Then the next range can be 4 -> 100 which will start at 4 and go to 100.
 
 ## Features
 

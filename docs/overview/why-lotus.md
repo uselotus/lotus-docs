@@ -6,7 +6,7 @@ sidebar_position: 1
 
 #### Lotus is a powerful open-core pricing and billing engine that enables SaaS companies to deploy, monitor, and experiment with custom subscriptions and complex models like usage-based pricing.
 
-Lotus provides a flexible and modular control panel on top of your existing quote to cash stack that allows you to integrate data from multiple systems to help you figure out the optimal pricing scheme for your products.
+Lotus provides a flexible and modular control panel on top of your existing quote-to-cash stack that allows you to integrate data from multiple systems to help you figure out the optimal pricing scheme for your products.
 
 Lotus is self-hostable and extensible, enabling companies to build their own frontend, apps, and integrations for themselves.
 
@@ -32,7 +32,7 @@ Create and deploy pricing and packaging for your products in a way that makes se
 
 ### 🔬 Monitor Your Customers
 
-Lotus provides a powerful dashboard that allows you to monitor your customers and their usage in real-time. This allows you to:
+Lotus provides a powerful dashboard that allows you to monitor your customers and their usage in real time. This allows you to:
 
 - Completely customize when, where, and how you [create your customers' subscriptions](../subscription-lifecycle/creating-subscriptions)
 - [Manage customer access to your products](../subscription-lifecycle/managing-access). Forget about keeping track of which customer is allowed to do what, how much of their allowed usage has been consumed, and when they need to upgrade. With Lotus, you can manage all of this in one place.

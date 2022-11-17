@@ -14,7 +14,7 @@ Best if you want to keep your data local or want full control and extensibility.
    ```sh
    git clone https://github.com/uselotus/lotus.git && cd lotus
    ```
-3. Change the environemnt variables located in `env/.env.prod.example` to suit your needs. If you need help you can check out the example environment variables at the bottom of this page.
+3. Change the environment variables located in `env/.env.prod.example` to suit your needs. If you need help you can check out the example environment variables at the bottom of this page.
 4. Rename `env/.env.prod.example` to `env/.env.prod`. Make sure you don't commit your secret environment variables anywhere!
 5. Build and run the Docker Image!
    ```sh

@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Entitlements and Feature Access
 ---
 
-# Managing Feature Accesss
+# Managing Feature Access
 
 While pricing is the obvious variable to tweak, packaging is potentially even more important to iterate on and match the evolving customer segments your SaaS serves. Lotus was built to enable the management of packaging as well as pricing and can plug into your product's code to accomplish this.
 

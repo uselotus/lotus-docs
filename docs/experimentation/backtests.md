@@ -15,4 +15,4 @@ How would our largest customers be affected?
 
 These are all questions our backtest results answer.
 
-While the backtest is meant to be the first research in the iterative process, it is important to remember its limitations. It doesn't take into account the reactive behavior of the user to the different pricing/packaging. Therefore the results are not meant to be completely accurate. Instead, they are meant to help you either quickly disprove an idea based on historical data, or give you the confidence to pursue your experiment furthur and run a forecast or deployment test (both coming soon to Lotus).
+While the backtest is meant to be the first research in the iterative process, it is important to remember its limitations. It doesn't take into account the reactive behavior of the user to the different pricing/packaging. Therefore the results are not meant to be completely accurate. Instead, they are meant to help you either quickly disprove an idea based on historical data, or give you the confidence to pursue your experiment further and run a forecast or deployment test (both coming soon to Lotus).

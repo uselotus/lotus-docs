@@ -14,17 +14,17 @@ Metrics can be as complex as you need to be and come in a few basic types.
 
 2. **Continuous**
 
-   The key difference between a counter and continuous metric is what the events represent. Whereas in a counter we aggregate over the events, in a continuous, the events are simply informing us about updates to some underlying state. For example, the number of seats currently active, or the storage currently in use. We don't actually aggregate over the events themselves, but rather over the state that they represent
+   The key difference between a counter and a continuous metric is what the events represent. Whereas in a counter we aggregate over the events, in a continuous, the events are simply informing us about updates to some underlying state. For example, the number of seats currently active, or the storage currently in use. We don't actually aggregate over the events themselves, but rather over the state that they represent
 
 3. **Rate**
 
-   Rate metrics are very similar to counter metrics. Whereas counter metrics aggregate over events that occur in a billing period, a rate keeps track of windowed time periods of finer grnaularity than teh entire billing period. For example, if you were running a database company, your monthly plan might include a rate metric that represents the number of database inserts per minute.
+   Rate metrics are very similar to counter metrics. Whereas counter metrics aggregate over events that occur in a billing period, a rate keeps track of windowed time periods of finer granularity than the entire billing period. For example, if you were running a database company, your monthly plan might include a rate metric that represents the number of database inserts per minute.
 
 ### Aggregation Metrics
 
 Defining an aggregation metric starts with defining the `metric_name`(display name for your metric) and `event_name`, the name of events that will be used to calculate the metric. For more details about how to log events and how to pass in an event name, please refer to the [Logging Events](./logging-events.mdx) section.
 
-Next define the aggregation type. To pick an aggregation type, think about how you want to pass in usage information as events into Lotus. Many of the aggregation types depend on you passing in certain key/value pairs in the properties.
+Next, define the aggregation type. To pick an aggregation type, think about how you want to pass in usage information as events into Lotus. Many of the aggregation types depend on you passing in certain key/value pairs in the properties.
 
 The allowed aggregation metrics are:
 
@@ -54,7 +54,7 @@ The allowed aggregation metrics are:
 
 Defining a continuous metric also starts with defining the <code>event_name</code> and <code>metric_name</code>.
 
-Currently, Lotus only supports using continuous metrics when the events are logging the current state of the metric, and not the change in the underlying state. For example, we support you sending us events that represent the number of seats currently active, but not events specifying the number of seats that were added or removed. This feature is coming soon!
+Currently, Lotus only supports using continuous metrics when the events are logging the current state of the metric and not the change in the underlying state. For example, we support you sending us events that represent the number of seats currently active, but not events specifying the number of seats that were added or removed. This feature is coming soon!
 
 Continuous metrics additionally require a <code>granularity</code> field. This field specifies the size of the smallest time periods you want to track your metric over. The allowed values are:
 
@@ -63,7 +63,7 @@ Continuous metrics additionally require a <code>granularity</code> field. This f
 - <code>week</code>
 - <code>total</code>
 
-For example, you may want to have a continuous metric that tracks the number of seats currently active. However, sometimes companies want to prorate at some smaller interval. For example, Notion's pricing states:
+For example, you may want to have a continuous metric that tracks the number of seats currently active. However, sometimes companies want to prorate at a smaller interval. For example, Notion's pricing states:
 
 > If you added members, your account will be charged a prorated amount based on the percentage of the billing cycle left at the time each member was added. If you removed members, your account will be credited in the same way.
 >
@@ -95,7 +95,7 @@ Rate metrics also require a <code>granularity</code> field. This field specifies
 - <code>hour</code>
 - <code>day</code>
 
-For example, you may have a metric that tracks the numebr of rows inserted into your database. If you only wanted to allow a certain number of database inserts per hour, you would set the granularity to <code>hour</code>.
+For example, you may have a metric that tracks the number of rows inserted into your database. If you only wanted to allow a certain number of database inserts per hour, you would set the granularity to <code>hour</code>.
 
 To calculate whether a customer has exceeded their rate limit, you must specify an <code>aggregation_type</code>. The allowed values are:
 
@@ -115,7 +115,7 @@ Additionally, we need another aggregation, <code>rate_aggregation</code>, to arr
 
 - <code>MAX</code> <b>:property field required </b>
 
-For example, if you wanted to charge on a rate metric with a `hour` granularity and `count` aggregation, we would charge based on the maximum number of events seen over all sliding windows of 1 hour.
+For example, if you wanted to charge on a rate metric with an `hour` granularity and `count` aggregation, we would charge based on the maximum number of events seen over all sliding windows of 1 hour.
 
 We are currently working on adding support for more aggregation types.
 

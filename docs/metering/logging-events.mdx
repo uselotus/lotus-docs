@@ -8,11 +8,11 @@ import CodeSegment from "@site/src/components/CodeSegment";
 
 Much like many product analytics software, Lotus integrates into your backend and tracks usage events when you recognize them.
 
-Using our SDKs or native API calls, Lotus ingests events that then can be matched to billable metrics and associated to pricing plans. After sending a usage event to Lotus, you no loger have to worry about that event being tracked or computed for billing later down the line.
+Using our SDKs or native API calls, Lotus ingests events that then can be matched to billable metrics and associated with pricing plans. After sending a usage event to Lotus, you no longer have to worry about that event being tracked or computed for billing later down the line.
 
 ## Setup
 
-For every billable metric you define, you need to put a track event API or SDK call in your backend with the associatied.
+For every billable metric you define, you need to put a track event API or SDK call in your backend with the associated.
 
 Events are defined as the following:
 
@@ -34,7 +34,7 @@ The <code>time_created</code> is an ISO 8601 format date in UTC (no timezone off
 
 The <code>idempotency_id</code> is a unique identifier for the specific event being passed in. Passing in a unique id allows Lotus to make sure no double counting occurs.
 
-The <code>properties</code> object is how you can extend your event information. In your metrics you can define properties to filer or aggregate over.
+The <code>properties</code> object is how you can extend your event information. In your metrics, you can define properties to filter or aggregate over.
 
 _Therefore, you should include as many important characteristics in your properties as possible._
 
