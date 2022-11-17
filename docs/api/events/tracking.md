@@ -24,7 +24,7 @@ Optionally you can submit
 - `time_created` is the time that the event occured. If you don't pass in a time_created, we will use the time that the event was sent by the Lotus SDK.
 
 <Tabs>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="Node">
 
 ```jsx
 lotus.trackEvent({
@@ -47,8 +47,22 @@ lotus.track_event(
       'region': 'US',
       'mb_used': 150
     }
-  idemptotency_id='c9799bf9-e5c9-4007-8d10-0663d045d23c'
+  idempotency_id='c9799bf9-e5c9-4007-8d10-0663d045d23c'
 )
+```
+
+</TabItem>
+
+<TabItem value="ts" label="Typescript">
+
+```jsx
+lotus.trackEvent({
+  eventName: "test", // required
+  timeCreated: new Date(), // optional, if not provided current time will be taken
+  customerId: "cust_58947673-64aa-4e64", // required
+  properties: { test: "test", numericQuantity: 3.1415 }, //optional, pass in any additional properties you want to aggregate or measure
+  idempotencyId: "c2c5eb5d-de4b-44e0", //optional if not provided Randomly generated ID will be taken
+});
 ```
 
 </TabItem>

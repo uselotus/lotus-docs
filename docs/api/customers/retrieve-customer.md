@@ -12,7 +12,7 @@ A `Retrieve Customer` call requires
 - `customer_id` the id you defined in your backend for the corresponding customer and the same id that you passed into Lotus when creating the customer
 
 <Tabs>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="Node">
 
 ```jsx
 lotus.retrieveCustomer({
@@ -27,6 +27,15 @@ lotus.retrieveCustomer({
 lotus.retrieve_customer(
     customer_id='cust_0569173e-e665-4369',
 )
+```
+
+</TabItem>
+<TabItem value="ts" label="Typescript">
+
+```jsx
+lotus.getCustomerDetail({
+  customerId: "cust_0569173e-e665-4369",
+});
 ```
 
 </TabItem>

@@ -7,7 +7,7 @@ import useSpecData from '@theme/useSpecData';
 Retrieves an array of [`customer`](./customer-object#customer-object) objects.
 
 <Tabs>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="Node">
 
 ```jsx
 lotus.listCustomers();
@@ -18,6 +18,13 @@ lotus.listCustomers();
 
 ```python
 lotus.list_customers()
+```
+
+</TabItem>
+<TabItem value="ts" label="Typescript">
+
+```jsx
+lotus.getCustomers();
 ```
 
 </TabItem>
