@@ -33,17 +33,12 @@ We are currently working on easy deployment options for AWS, GCP, and Azure. If 
     <th>Change?</th>
   </tr>
   <tr>
-    <td>SECRET_KEY</td>
-    <td>change_me</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
     <td>POSTGRES_USER</td>
     <td>lotus</td>
     <td>&#10004;</td>
   </tr>
   <tr>
-    <td>POSTGRES_DB_NAME</td>
+    <td>POSTGRES_DB</td>
     <td>lotus</td>
     <td>&#10004;</td>
   </tr>
@@ -52,14 +47,10 @@ We are currently working on easy deployment options for AWS, GCP, and Azure. If 
     <td>lotus</td>
     <td>&#10004;</td>
   </tr>
+
   <tr>
-    <td>ADMIN_PASSWORD</td>
-    <td>insecure_password</td>
-    <td>&#10004;</td>
-  </tr>
-  <tr>
-    <td>ADMIN_EMAIL</td>
-    <td>example@example.com</td>
+    <td>SECRET_KEY</td>
+    <td>change_me</td>
     <td>&#10004;</td>
   </tr>
   <tr>
@@ -68,19 +59,14 @@ We are currently working on easy deployment options for AWS, GCP, and Azure. If 
     <td>&#10004;</td>
   </tr>
   <tr>
-    <td>DJANGO_SETTINGS_MODULE</td>
-    <td>"lotus.settings"</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>STRIPE_SECRET_KEY</td>
-    <td>change_me</td>
+    <td>ADMIN_EMAIL</td>
+    <td>example@example.com</td>
     <td>&#10004;</td>
   </tr>
   <tr>
-    <td>DOCKERIZED</td>
-    <td>True</td>
-    <td></td>
+    <td>ADMIN_PASSWORD</td>
+    <td>insecure_password</td>
+    <td>&#10004;</td>
   </tr>
   <tr>
     <td>DEBUG</td>
@@ -93,6 +79,17 @@ We are currently working on easy deployment options for AWS, GCP, and Azure. If 
     <td></td>
   </tr>
   <tr>
+    <td>DOCKERIZED</td>
+    <td>True</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>DJANGO_SETTINGS_MODULE</td>
+    <td>"lotus.settings"</td>
+    <td></td>
+  </tr>
+
+  <tr>
     <td>NODE_ENV</td>
     <td>production</td>
     <td></td>
@@ -102,14 +99,25 @@ We are currently working on easy deployment options for AWS, GCP, and Azure. If 
     <td>"http://localhost/"</td>
     <td></td>
   </tr>
+
   <tr>
-    <td>PRODUCT_ANALYTICS_OPT_IN</td>
-    <td>True</td>
-    <td></td>
+    <td>VITE_STRIPE_CLIENT</td>
+    <td>ca_</td>
+    <td>&#10004;</td>
   </tr>
   <tr>
-    <td>VITE_IS_DEMO</td>
-    <td>false</td>
-    <td></td>
+    <td>STRIPE_LIVE_SECRET_KEY</td>
+    <td>sk_live_</td>
+    <td>&#10004;</td>
+  </tr>
+  <tr>
+    <td>STRIPE_TEST_SECRET_KEY</td>
+    <td>sk_test_</td>
+    <td>&#10004;</td>
+  </tr>
+  <tr>
+    <td>WEBHOOK_SECRET</td>
+    <td>whsec_</td>
+    <td>&#10004;</td>
   </tr>
 </table>
