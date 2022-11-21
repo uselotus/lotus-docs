@@ -55,6 +55,11 @@ const config = {
             route: "/api/",
           },
           {
+            id: "track_event",
+            spec: "schemas/track_post.yaml",
+            route: "/api/",
+          },
+          {
             id: "customer_access",
             spec: "schemas/customer_access_get.yaml",
             route: "/api/",

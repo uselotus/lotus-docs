@@ -13,13 +13,14 @@ allowed_endpoints = {
     r"/api/plans/{plan_id}/" : "plan",
     "/api/subscriptions/" : "subscriptions",
     r"/api/subscriptions/{subscription_id}/" : "subscription",
-    "/api/track" : "track",
+    "/api/track/" : "track",
 }
 lst = list(data["paths"].keys())
 for x in lst:
     if x not in allowed_endpoints:
         del data["paths"][x]
     else:
+        print(x, allowed_endpoints[x])
         if "delete" in data["paths"][x]:
             del data["paths"][x]["delete"]
 with open('schemas/project_schema.yaml', 'w') as fp:

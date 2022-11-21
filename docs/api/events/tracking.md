@@ -67,3 +67,5 @@ lotus.trackEvent({
 
 </TabItem>
 </Tabs>
+
+<ApiDocMdx id="track_event" />
