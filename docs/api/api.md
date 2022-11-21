@@ -12,4 +12,4 @@ Your API key obtained in the Lotus Frontend Settings tab, is only visible once y
 
 The API key must be passed into the _X-API-KEY_ header in your requests.
 
-<ApiDocMdx id="" />
+<ApiDocMdx id="lotus" />
