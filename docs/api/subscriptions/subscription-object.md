@@ -7,6 +7,6 @@ import useSpecData from '@theme/useSpecData';
 
 ## `subscription` object
 
-<ApiSchema pointer='#/components/schemas/Subscription' />
+<ApiSchema id="lotus" pointer='#/components/schemas/Subscription' />
 
 Subscriptions link a customer to a plan, for a given time period. Therefore, tehre may not be more than one subscription for a given customer and plan at a given time.

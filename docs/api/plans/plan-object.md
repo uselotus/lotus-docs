@@ -7,12 +7,12 @@ import useSpecData from '@theme/useSpecData';
 
 ## `plan` object
 
-<ApiSchema pointer='#/components/schemas/Plan' />
+<ApiSchema id="lotus" pointer='#/components/schemas/Plan' />
 
 Plans represent a billing plan for a customer. They can have subscriptions, invoices, payment methods, and more.
 
 ## `plan_detail` object
 
-<ApiSchema pointer='#/components/schemas/PlanDetail' />
+<ApiSchema id="lotus" pointer='#/components/schemas/PlanDetail' />
 
 Plan detail includes slightly more information about the plan than the plan object.

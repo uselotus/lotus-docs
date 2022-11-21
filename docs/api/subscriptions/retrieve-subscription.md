@@ -40,3 +40,5 @@ lotus.getSubscriptionDetails({
 
 </TabItem>
 </Tabs>
+
+<ApiDocMdx id="get_subscription" />

@@ -29,3 +29,7 @@ lotus.getCustomers();
 
 </TabItem>
 </Tabs>
+
+## API Spec
+
+<ApiDocMdx id="get_customers" />

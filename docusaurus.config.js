@@ -50,7 +50,58 @@ const config = {
         // Plugin Options for loading OpenAPI files
         specs: [
           {
-            spec: "project_schema.yaml",
+            id: "lotus",
+            spec: "schemas/project_schema.yaml",
+            route: "/api/",
+          },
+          {
+            id: "customer_access",
+            spec: "schemas/customer_access_get.yaml",
+            route: "/api/",
+          },
+          {
+            id: "get_customers",
+            spec: "schemas/customers_get.yaml",
+            route: "/api/",
+          },
+          {
+            id: "create_customer",
+            spec: "schemas/customers_post.yaml",
+            route: "/api/",
+          },
+          {
+            id: "get_customer",
+            spec: "schemas/customer_get.yaml",
+            route: "/api/",
+          },
+          {
+            id: "get_plan",
+            spec: "schemas/plan_get.yaml",
+            route: "/api/",
+          },
+          {
+            id: "update_plan",
+            spec: "schemas/plan_patch.yaml",
+            route: "/api/",
+          },
+          {
+            id: "get_subscription",
+            spec: "schemas/subscription_get.yaml",
+            route: "/api/",
+          },
+          {
+            id: "update_subscription",
+            spec: "schemas/subscription_patch.yaml",
+            route: "/api/",
+          },
+          {
+            id: "create_subscription",
+            spec: "schemas/subscriptions_post.yaml",
+            route: "/api/",
+          },
+          {
+            id: "get_subscriptions",
+            spec: "schemas/subscriptions_get.yaml",
             route: "/api/",
           },
         ],
@@ -58,6 +109,9 @@ const config = {
         theme: {
           // Change with your site colors
           primaryColor: "#1890ff",
+          options: {
+            hideDownloadButton: true,
+          }
         },
       },
     ],

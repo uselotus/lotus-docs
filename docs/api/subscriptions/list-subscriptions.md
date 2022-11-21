@@ -29,3 +29,5 @@ lotus.getAllSubscriptions();
 
 </TabItem>
 </Tabs>
+
+<ApiDocMdx id="get_subscriptions" />

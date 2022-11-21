@@ -67,3 +67,5 @@ lotus.cancelSubscription({
 
 </TabItem>
 </Tabs>
+
+<ApiDocMdx id="get_plan" />

@@ -40,3 +40,7 @@ lotus.getCustomerDetail({
 
 </TabItem>
 </Tabs>
+
+## API Spec
+
+<ApiDocMdx id="get_customer" />

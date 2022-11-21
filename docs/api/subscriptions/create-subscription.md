@@ -56,3 +56,5 @@ lotus.createSubscription({
 
 </TabItem>
 </Tabs>
+
+<ApiDocMdx id="create_subscription" />

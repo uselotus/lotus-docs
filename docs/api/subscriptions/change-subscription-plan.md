@@ -52,3 +52,5 @@ lotus.changeSubscription({
 
 </TabItem>
 </Tabs>
+
+<ApiDocMdx id="update_subscription" />

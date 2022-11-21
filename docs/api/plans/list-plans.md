@@ -25,7 +25,7 @@ lotus.list_plans()
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus. getAllPlans() // will return a promise;
+lotus.getAllPlans(); // will return a promise;
 ```
 
 </TabItem>

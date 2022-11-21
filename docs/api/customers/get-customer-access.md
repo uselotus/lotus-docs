@@ -59,16 +59,20 @@ lotus.check_customer_access(
 
 ```jsx
 lotus.getCustomerAccess({
-    customerId: "cust_0569173e-e665-4369",
-    eventName: 'api_call',
-    eventLimitType: 'free',
-})
+  customerId: "cust_0569173e-e665-4369",
+  eventName: "api_call",
+  eventLimitType: "free",
+});
 
 lotus.getCustomerAccess({
-    customerId: "cust_0569173e-e665-4369",
-    featureName:'slack_integration',
-})
+  customerId: "cust_0569173e-e665-4369",
+  featureName: "slack_integration",
+});
 ```
 
 </TabItem>
 </Tabs>
+
+## API Spec
+
+<ApiDocMdx id="customer_access" />
