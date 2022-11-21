@@ -8,7 +8,11 @@ import useSpecData from '@theme/useSpecData';
 A `Create Customer` call requires
 
 - `customer_id` which uniquely identifies your customer in your backend. This is the same id you'll pass into `track_event` calls to identify the customer, in addition to other calls, so make sure it's available to you.
-- `name` a name for your customer
+- `name` (optional) a name for your customer
+- `email` an email for your customer
+- `payment_provider` (optional), choices are ["stripe"]
+- `payment_provider_id` (optional) associated id for your customers payment provider
+- `properties` (optional) any additional metadata related to your customer
 
 <!-- Optionally you can submit
 
@@ -20,7 +24,11 @@ A `Create Customer` call requires
 ```jsx
 lotus.createCustomer({
   customer_id: "123",
+  email: "email@email.com",
   customer_name: "Test Customer",
+  payment_provider: "stripe",
+  payment_provider_id: "23423",
+  properties: {},
 });
 ```
 
@@ -39,8 +47,12 @@ lotus.create_customer(
 
 ```jsx
 lotus.createCustomer({
-  customerId: "123",
-  customerName: "Test Customer",
+  customer_id: "123",
+  email: "email@email.com",
+  customer_name: "Test Customer",
+  payment_provider: "stripe",
+  payment_provider_id: "23423",
+  properties: {},
 });
 ```
 
