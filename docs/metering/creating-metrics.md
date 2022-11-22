@@ -52,9 +52,12 @@ The allowed aggregation metrics are:
 
 <p>
 
-Defining a continuous metric also starts with defining the <code>event_name</code> and <code>metric_name</code>.
+Defining a continuous metric also starts with defining the <code>event_name</code>, <code>metric_name</code>, and <code>event_type</code>.
 
-Currently, Lotus only supports using continuous metrics when the events are logging the current state of the metric and not the change in the underlying state. For example, we support you sending us events that represent the number of seats currently active, but not events specifying the number of seats that were added or removed. This feature is coming soon!
+Lotus currently supports two <code>event_type</code>s:
+
+- <code>DELTA</code>: The event represents a change in the underlying state. For example, the events could represent the change in the number of active seats, and could have values like <code>+1</code> or <code>-2</code> to represent a seat(s) being added or removed.
+- <code>TOTAL</code>: The event represents the current value of the underlying state. For example, the events could represent the total gigabytes of storage a customer is using, and could have values like <code>10</code> or <code>50</code> to represent the total.
 
 Continuous metrics additionally require a <code>granularity</code> field. This field specifies the size of the smallest time periods you want to track your metric over. The allowed values are:
 
