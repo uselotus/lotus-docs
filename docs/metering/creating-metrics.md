@@ -20,9 +20,9 @@ Metrics can be as complex as you need to be and come in a few basic types.
 
    Rate metrics are very similar to counter metrics. Whereas counter metrics aggregate over events that occur in a billing period, a rate keeps track of windowed time periods of finer granularity than the entire billing period. For example, if you were running a database company, your monthly plan might include a rate metric that represents the number of database inserts per minute.
 
-### Aggregation Metrics
+### Counter Metrics
 
-Defining an aggregation metric starts with defining the `metric_name`(display name for your metric) and `event_name`, the name of events that will be used to calculate the metric. For more details about how to log events and how to pass in an event name, please refer to the [Logging Events](./logging-events.mdx) section.
+Defining a counter metric starts with defining the `metric_name`(display name for your metric) and `event_name`, the name of events that will be used to calculate the metric. For more details about how to log events and how to pass in an event name, please refer to the [Logging Events](./logging-events.mdx) section.
 
 Next, define the aggregation type. To pick an aggregation type, think about how you want to pass in usage information as events into Lotus. Many of the aggregation types depend on you passing in certain key/value pairs in the properties.
 
