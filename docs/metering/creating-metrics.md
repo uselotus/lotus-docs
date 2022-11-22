@@ -123,3 +123,65 @@ For example, if you wanted to charge on a rate metric with an `hour` granularity
 We are currently working on adding support for more aggregation types.
 
 </p>
+
+### Examples
+
+#### Counter Metric
+
+The following example shows a counter metric that takes in events called `api_post`. At the end of the billing period, we will take the `SUM` of the property `num_widgets_created` over all these events. That will be a customer's usage for the billing period. We will later define how to transform that usage quantity into a price, specifically when creating [plan components](../plan-management/creating-plans.md).
+
+![Counter Metric Example](./assets/counter.png)
+
+This is an example of what an event might look like:
+
+```json
+{
+  "event_name": "api_post",
+  "customer_id": "cust_123",
+  "properties": {
+    "num_widgets_created": 14,
+    "time_taken": 0.5,
+    "project_id": "123456"
+  }
+}
+```
+
+#### Continuous Metric
+
+The following example shows how we might implement a continuous metric that tracks the number of active seats in a company. Because we have an aggregation type of `max` and a period of `day`, we will calculate the maximum number of seats seen over each day. In essence, we will be tracking user-days. Because we have an event type of `total`, the specified property will represent the current value of the number of seats. Again, this is simply a definition of the metric. We will later define how to transform that usage quantity into a price, when creating [plan components](../plan-management/creating-plans.md).
+
+![Continuous Metric Example](./assets/continuous.png)
+
+This is an example of what an event might look like:
+
+```json
+{
+  "event_name": "seats",
+  "customer_id": "cust_123",
+  "properties": {
+    "seat_count": 4,
+    "seat_change": -1,
+    "admin_seat": true
+  }
+}
+```
+
+#### Rate Metric
+
+This example shows how we might implement a rate metric that tracks the number of rows inserted into a database. Because we have an aggregation type of `count` and a period of `minute`, the usage is defined as the numebr of events seen per minute on a rolling window. Further, we also have a rate aggregation type. This specifies that over all rolling 1-minute periods, we will take the one with the maximum count of `db_insert` events and use that as the usage for the billing period. Again, this is simply a definition of the metric. We will later define how to transform that usage quantity into a price, when creating [plan components](../plan-management/creating-plans.md).
+
+![Rate Metric Example](./assets/rate.png)
+
+This is an example of what an event might look like:
+
+```json
+{
+  "event_name": "db_insert",
+  "customer_id": "cust_123",
+  "properties": {
+    "table_name": "record_table",
+    "num_rows": 10,
+    "kb_size": 10
+  }
+}
+```
