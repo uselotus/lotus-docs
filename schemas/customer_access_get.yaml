@@ -8,7 +8,7 @@ info:
     to automate and optimize their custom usage-based pricing for any metric.
 servers:
 - description: cloud-pro
-  url: https://www.uselotus.app
+  url: https://api.uselotus.io
 - description: self-hosted
   url: http://localhost:8000
 paths:

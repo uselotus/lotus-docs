@@ -21,7 +21,7 @@ Optionally you can submit
 
 - `properties`, which can be a dict with any information you'd like to add. In your metrics you can define properties to filer or aggregate over.
 - `idempotency_id` is a unique identifier for the specific event being passed in. Passing in a unique id allows Lotus to make sure no double counting occurs. If you don't pass in an idempotency_id, we will generate one for you using UUID4.
-- `time_created` is the time that the event occured. If you don't pass in a time_created, we will use the time that the event was sent by the Lotus SDK.
+- `time_created` is the time that the event occured, represented as a datetime in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) in the UTC timezome. If you don't pass in a time_created, we will use the time that the event was created by the Lotus SDK.
 
 <Tabs>
 <TabItem value="js" label="Node">

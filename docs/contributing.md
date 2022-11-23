@@ -21,7 +21,7 @@ You can find these issues tagged with the [extensibility label in our Github iss
 
 In order to develop locally, we recommend using Docker to set up the environment, which allows for hot reloading of both frontend and backend code.
 
-1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and make sure it is running.
 2. Clone the repo (our version, or your fork of it) and navigate to the project.
    ```sh
    git clone https://github.com/uselotus/lotus.git && cd lotus
