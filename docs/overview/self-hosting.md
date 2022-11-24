@@ -9,7 +9,7 @@ Best if you want to keep your data local or want full control and extensibility.
 
 ### :computer: Local Hobby Instance
 
-1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and make sure it is running.
 2. Clone the repo and navigate to the project
    ```sh
    git clone https://github.com/uselotus/lotus.git && cd lotus

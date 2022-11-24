@@ -57,5 +57,3 @@ Price adjustments give you the flexibility to easily represent business events s
 - **Percentage**: This is a percentage discount or surcharge that will be applied to the total price of the plan. For example, if you want to give a 10% off discount to all customers on this plan, you would specify a percentage of 10.
 
 - **Fixed Amount**: This is a flat discount or surcharge that will be applied to the total price of the plan. For example, if you want to give a $200 discount to all customers on this plan, you would specify a flat amount of 200. Keep in mind flat discounts will never give a credit to a customer, and will simply make the invoice 0.
-
-- **Price Overwrite**: This is a fixed price that will be applied to the total price of the plan. For example, if you negotiated a contract worth $3,000 with a large enterprise customer, you could overwrite the usage-based charges and charge them a flat fee instead.
