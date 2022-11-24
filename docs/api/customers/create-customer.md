@@ -8,11 +8,14 @@ import useSpecData from '@theme/useSpecData';
 A `Create Customer` call requires
 
 - `customer_id` which uniquely identifies your customer in your backend. This is the same id you'll pass into `track_event` calls to identify the customer, in addition to other calls, so make sure it's available to you.
-- `name` (optional) a name for your customer
 - `email` an email for your customer
-- `payment_provider` (optional), choices are ["stripe"]
-- `payment_provider_id` (optional) associated id for your customers payment provider
-- `properties` (optional) any additional metadata related to your customer
+
+Optionally you can submit:
+
+- `name` a name for your customer
+- `payment_provider` choices are ["stripe"]
+- `payment_provider_id` associated id for your customers payment provider
+- `properties` any additional metadata related to your customer
 
 <!-- Optionally you can submit
 
@@ -38,6 +41,7 @@ lotus.createCustomer({
 ```python
 lotus.create_customer(
     customer_id='cust_0569173e-e665-4369',
+    email="corporation@outlook.com",
     name='Corporation Inc.',
 )
 ```
