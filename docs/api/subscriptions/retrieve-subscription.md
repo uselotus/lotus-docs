@@ -12,15 +12,6 @@ A `Retrieve Subscription` call requires
 - `subscription_id`
 
 <Tabs>
-<TabItem value="js" label="Node">
-
-```jsx
-lotus.retrieveSubscription({
-  subscription_id: "sub_0569173e-e665-4369",
-});
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python

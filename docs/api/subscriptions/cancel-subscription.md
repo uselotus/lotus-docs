@@ -20,21 +20,6 @@ OR
 - `replace_immediately_type` in case you want the subscription cancelled immediately. This can take on a value of `end_current_subscription_and_bill` or `end_current_subscription_and_dont_bill`. The former will end the subscription immediately and bill the customer for the current period. The latter will end the subscription immediately and not bill the customer for the current period.
 
 <Tabs>
-<TabItem value="js" label="Node">
-
-```jsx
-lotus.cancelSubscription({
-  subscription_id: "subscription_123",
-  turn_off_auto_renew: true,
-});
-
-lotus.cancelSubscription({
-  subscription_id: "subscription_123",
-  replace_immediately_type: "end_current_subscription_and_bill",
-});
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -67,5 +52,3 @@ lotus.cancelSubscription({
 
 </TabItem>
 </Tabs>
-
-

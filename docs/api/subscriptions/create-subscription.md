@@ -21,17 +21,6 @@ Optionally you can submit:
 - `auto-renew` a boolean indicating whether the subscription should auto-renew. If you don't pass in this field, we will assume it's true.
 
 <Tabs>
-<TabItem value="js" label="Node">
-
-```jsx
-lotus.createSubscription({
-  customer_id: "customer_123",
-  plan_id: "billing_plan_5",
-  start_date: "2022-02-23",
-});
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python

@@ -7,13 +7,6 @@ import useSpecData from '@theme/useSpecData';
 Retrieves an array of [`subscription`](./subscription-object#subscription-object) objects.
 
 <Tabs>
-<TabItem value="js" label="Node">
-
-```jsx
-lotus.listSubscriptions();
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python

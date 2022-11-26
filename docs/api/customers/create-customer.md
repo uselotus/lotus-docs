@@ -22,20 +22,7 @@ Optionally you can submit:
 - `balance` the number of dollars of credit the user has. Can be useful in case you want to give your customers a certain amount of spend for free. -->
 
 <Tabs>
-<TabItem value="js" label="Node">
 
-```jsx
-lotus.createCustomer({
-  customer_id: "123",
-  email: "email@email.com",
-  customer_name: "Test Customer",
-  payment_provider: "stripe",
-  payment_provider_id: "23423",
-  properties: {},
-});
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python

@@ -24,19 +24,6 @@ Optionally you can submit
 - `time_created` is the time that the event occured, represented as a datetime in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) in the UTC timezome. If you don't pass in a time_created, we will use the time that the event was created by the Lotus SDK.
 
 <Tabs>
-<TabItem value="js" label="Node">
-
-```jsx
-lotus.trackEvent({
-  event_name: "test", // Event Name should match a defined billable metric
-  time_created: new Date(), //time that the event occured
-  customer_id: "cust_58947673-64aa-4e64",
-  properties: { test: "test", numericQuantity: 3.1415 }, //optional, pass in any additional properties you want to aggregate or measure
-  idempotency_id: "c2c5eb5d-de4b-44e0", //Randomly generated ID
-});
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python

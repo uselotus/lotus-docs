@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Getting Started
 
-You can access Lotus's api **directly** or through the **Node.js wrapper**.
+You can access Lotus's api **directly** or through the SDKs.
 
 ## Start your site
 

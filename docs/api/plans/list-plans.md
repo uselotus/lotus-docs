@@ -7,13 +7,6 @@ import useSpecData from '@theme/useSpecData';
 Retrieves an array of [plan](./plan-object#plan-object) objects.
 
 <Tabs>
-<TabItem value="js" label="Node">
-
-```jsx
-lotus.listPlans();
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python

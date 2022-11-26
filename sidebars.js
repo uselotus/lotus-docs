@@ -76,7 +76,7 @@ const sidebars = {
   apiSidebar: [
     {
       type: "category",
-      items: ["api/node-guide", "api/python-guide", "api/typescript-guide"],
+      items: ["api/python-guide", "api/typescript-guide"],
       label: "SDK Setup",
     },
     {

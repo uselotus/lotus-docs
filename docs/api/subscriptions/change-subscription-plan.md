@@ -17,17 +17,6 @@ The `Change Subscription Plan` call allows you to change the plan associated wit
 The first two options will end the subscription and start a new one with the new plan, whereas the third option will make a mid-subscription switch to the new plan.
 
 <Tabs>
-<TabItem value="js" label="Node">
-
-```jsx
-lotus.changeSubscriptionPlan({
-  subscription_id: "subscription_123",
-  plan_id: "plan_123",
-  replace_immediately_type: "change_subscription_plan",
-});
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
