@@ -8,20 +8,27 @@ import TabItem from '@theme/TabItem';
 
 # Tracking
 
-Tracking is one of the most common operations you'll make in Lotus. It's used to capture any event that happens in your app that you want to bill over eventually.
+Tracking is one of the most common operations you'll make in Lotus. It's used to capture any event that happens in your
+app that you want to bill over eventually.
 
-You can track absolutely anything, and with the extensible and customizable properties field, you can add as much information as you want.
+You can track absolutely anything, and with the extensible and customizable properties field, you can add as much
+information as you want.
 
-A `Track Event` call requires
+A `Track Event` call requires array of objects
 
 - `event_name` should correspond to what the event is and match what you define in your metrics.
-- `customer_id` the id you defined in your backend for the corresponding customer and the same id that you passed into Lotus when creating the customer
+- `customer_id` the id you defined in your backend for the corresponding customer and the same id that you passed into
+  Lotus when creating the customer
 
 Optionally you can submit
 
-- `properties`, which can be a dict with any information you'd like to add. In your metrics you can define properties to filer or aggregate over.
-- `idempotency_id` is a unique identifier for the specific event being passed in. Passing in a unique id allows Lotus to make sure no double counting occurs. If you don't pass in an idempotency_id, we will generate one for you using UUID4.
-- `time_created` is the time that the event occured, represented as a datetime in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) in the UTC timezome. If you don't pass in a time_created, we will use the time that the event was created by the Lotus SDK.
+- `properties`, which can be a dict with any information you'd like to add. In your metrics you can define properties to
+  filer or aggregate over.
+- `idempotency_id` is a unique identifier for the specific event being passed in. Passing in a unique id allows Lotus to
+  make sure no double counting occurs. If you don't pass in an idempotency_id, we will generate one for you using UUID4.
+- `time_created` is the time that the event occured, represented as a datetime
+  in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) in the UTC timezome. If you don't pass in a time_created, we
+  will use the time that the event was created by the Lotus SDK.
 
 <Tabs>
 <TabItem value="py" label="Python">
@@ -43,12 +50,16 @@ lotus.track_event(
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.trackEvent({
-  eventName: "test", // required
-  timeCreated: new Date(), // optional, if not provided current time will be taken
-  customerId: "cust_58947673-64aa-4e64", // required
-  properties: { test: "test", numericQuantity: 3.1415 }, //optional, pass in any additional properties you want to aggregate or measure
-  idempotencyId: "c2c5eb5d-de4b-44e0", //optional if not provided Randomly generated ID will be taken
+await lotus.trackEvent({
+  batch:[
+    {
+        eventName: "test", // required
+        timeCreated: new Date(), // optional, if not provided current time will be taken
+        customerId: "cust_58947673-64aa-4e64", // required
+        properties: { test: "test", numericQuantity: 3.1415 }, //optional, pass in any additional properties you want to aggregate or measure
+        idempotencyId: "c2c5eb5d-de4b-44e0", //optional if not provided Randomly generated ID will be taken 
+    }
+  ]
 });
 ```
 

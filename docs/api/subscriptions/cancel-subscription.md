@@ -39,12 +39,12 @@ lotus.cancel_subscription(
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.cancelSubscription({
+await lotus.cancelSubscription({
   subscriptionId: "subscription_123",
   turnOffAutoRenew: true,
 });
 
-lotus.cancelSubscription({
+await lotus.cancelSubscription({
   subscriptionId: "subscription_123",
   replaceImmediatelyType: "end_current_subscription_and_bill",
 });

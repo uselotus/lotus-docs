@@ -24,7 +24,7 @@ lotus.retrieve_subscription(
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.getSubscriptionDetails({
+await lotus.getSubscriptionDetails({
   subscriptionId: "sub_0569173e-e665-4369",
 });
 ```

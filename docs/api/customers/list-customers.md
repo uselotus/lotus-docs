@@ -17,7 +17,7 @@ lotus.list_customers()
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.getCustomers();
+await lotus.getCustomers();
 ```
 
 </TabItem>

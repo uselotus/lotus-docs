@@ -32,7 +32,7 @@ lotus.change_subscription_plan(
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.changeSubscription({
+await lotus.changeSubscription({
   subscriptionId: "subscription_123",
   planId: "plan_123",
   replaceImmediatelyType: "change_subscription_plan",
