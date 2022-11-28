@@ -42,13 +42,13 @@ lotus.check_customer_access(
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.getCustomerAccess({
+await lotus.getCustomerAccess({
   customerId: "cust_0569173e-e665-4369",
   eventName: "api_call",
   eventLimitType: "free",
 });
 
-lotus.getCustomerAccess({
+await lotus.getCustomerAccess({
   customerId: "cust_0569173e-e665-4369",
   featureName: "slack_integration",
 });

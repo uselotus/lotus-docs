@@ -36,7 +36,7 @@ lotus.create_subscription(
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.createSubscription({
+await lotus.createSubscription({
   customerId: "customer_123",
   planId: "billing_plan_5",
   startDate: "2022-02-23",

@@ -37,8 +37,8 @@ lotus.create_customer(
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.createCustomer({
-  customer_id: "123",
+await lotus.createCustomer({
+  customerId: "123",
   email: "email@email.com",
   customer_name: "Test Customer",
   payment_provider: "stripe",

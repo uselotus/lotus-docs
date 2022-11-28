@@ -17,7 +17,7 @@ lotus.list_subscriptions()
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.getAllSubscriptions();
+await lotus.getAllSubscriptions();
 ```
 
 </TabItem>

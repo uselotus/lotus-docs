@@ -24,7 +24,7 @@ lotus.retrieve_customer(
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.getCustomerDetail({
+await lotus.getCustomerDetail({
   customerId: "cust_0569173e-e665-4369",
 });
 ```

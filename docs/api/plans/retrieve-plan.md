@@ -25,7 +25,7 @@ lotus.retrieve_plan(
 <TabItem value="ts" label="Typescript">
 
 ```jsx
-lotus.retrievePlan({
+await lotus.retrievePlan({
   planId: "plan_0569173e-e665-4369", // required
 }); // Will return a promise
 ```
