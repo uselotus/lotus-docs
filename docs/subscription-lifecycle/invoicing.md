@@ -15,4 +15,4 @@ For every customer, you can choose how each should be invoiced based on the curr
 
 We primarily integrate with Stripe to send payment_intents or invoices through Stripe Invoice. You can use Stripe to handle the final complexities such as sales tax and dunning. We don't currently handle these.
 
-Currently, Lotus is close to integrating with Bill.com and Paddle to expand the invoicing + collection options.
+Currently, Lotus is close to integrating with Bill.com to expand the invoicing + collection options.
