@@ -5,11 +5,11 @@ import useSpecData from '@theme/useSpecData';
 
 # Cancel a subscription
 
-Cancels a subscription. You can modify the behavior of the cancellation based on the arguments passed to the call.
+Cancels a subscription for a customer.
 
 A `Cancel Subscription` call requires
 
-- `subscription_id` the unique ID of the subscription you want to cancel. You can find the subscription uid in the subscription page in Lotus.
+- `subscription_id` the unique ID of the subscription you want to cancel. You can find the subscription uid in the subscription page in Lotus or in a customer detail call.
 
 Additionally, you must submit:
 

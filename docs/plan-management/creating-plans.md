@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Create Pricing Plans
+# Create Pricing & Packaging Plans
 
 Once you have defined your value [metrics](../metering/creating-metrics.md), it's time to combine them to form a cohesive package that you can deliver to your customers. In other words, let's create a plan! This is what the plan creation page looks like:
 
@@ -14,7 +14,15 @@ It might look like a lot, but let's break it down!
 
 ![Plan Information Section](./assets/plan_info.png)
 
-This section has metadata about your plan, including its name and description, billing frequency information, and the flat subscription fee any customers on this plan will pay per billing period. One of Lotus' core concepts is [plan versioning](./versioning.md), so keep in mind that when you make new versions of the same plan, the only two things you can't change are the plan name and the plan duration. Everything else is fair game!
+This section has metadata about your plan, including its name and description, billing frequency information, and the flat subscription fee any customers on this plan will pay per billing period.
+
+In addition we expose the option to define how you when you want the plan to issue invoices:
+
+- Aligned with the calendar, 1st of the month etc.
+
+- On the day that the subscription was originally created, i.e the 4th of every month
+
+One of Lotus' core concepts is [plan versioning](./versioning.md), so keep in mind that when you make new versions of the same plan, the only two things you can't change are the plan name and the plan duration. Everything else is fair game!
 
 Additionally, we know that you might have existing subscriptions associated with a payment provider (such as [Stripe](../external-integrations/stripe.md)), so we allow you to link this plan to any ID that represents a plan in your payment provider. This is useful when you want to migrate your existing subscriptions to Lotus.
 

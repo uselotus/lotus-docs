@@ -9,7 +9,9 @@ Retrieves a [`subscription`](./subscription-object#subscription-object) object.
 
 A `Retrieve Subscription` call requires
 
-- `subscription_id`
+- `subscription_id`, the unique id for the subscription held in Lotus.
+
+This call returns information about the subscription, the associated customer, and the associated plan as seen below.
 
 <Tabs>
 <TabItem value="py" label="Python">

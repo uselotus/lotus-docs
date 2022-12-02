@@ -6,6 +6,8 @@ import useSpecData from '@theme/useSpecData';
 
 Retrieves an array of [`subscription`](./subscription-object#subscription-object) objects.
 
+If you need to see the subscriptions of a specific customer you can use [Retrieve Customer](/docs/api/customers/retrieve-customer)
+
 <Tabs>
 <TabItem value="py" label="Python">
 
