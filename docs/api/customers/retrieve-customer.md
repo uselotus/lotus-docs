@@ -29,6 +29,11 @@ await lotus.getCustomerDetail({
 });
 ```
 
+The response includes all information about the customer and also the current subscription they are on. The full spec is in the [`customer_detail`](./customer-object#customer-detail-object) but some specifically useful properties that are return in this object are:
+
+- `total_amount_due`
+- `default_currency`, contains the code, name, and symbol of the currency that the customer will be charged with
+
 </TabItem>
 </Tabs>
 

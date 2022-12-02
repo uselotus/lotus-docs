@@ -20,7 +20,6 @@ AND EITHER
 OR
 
 - `event_name` name of the event you want to check access for. In the backend we'll check whether any of the plan components associated with the event have surpassed their limit.
-- `event_limit_type` the type of limit you want to check. Pass in `free` to check if the customer has access to free units, or `total` to see if the customer has access to the event_name at all.
 
 <Tabs>
 <TabItem value="py" label="Python">
@@ -45,7 +44,6 @@ lotus.check_customer_access(
 await lotus.getCustomerAccess({
   customerId: "cust_0569173e-e665-4369",
   eventName: "api_call",
-  eventLimitType: "free",
 });
 
 await lotus.getCustomerAccess({
